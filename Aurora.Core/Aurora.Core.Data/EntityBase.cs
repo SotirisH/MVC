@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Aurora.Core.Data
 {
     /// <summary>
-    /// Base class for all EF Class
+    /// Base class for all EF Class with audit tracking fields & Timestamp
     /// </summary>
     /// <remarks>
     /// </remarks>

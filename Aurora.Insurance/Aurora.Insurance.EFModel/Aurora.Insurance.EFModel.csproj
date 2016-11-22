@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Branch.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Contract.cs" />
     <Compile Include="Person.cs" />
@@ -60,6 +59,12 @@
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Aurora.Core\Aurora.Core.Data\Aurora.Core.Data.csproj">
+      <Project>{31b2a3a7-e67e-4156-b216-5fb13c370910}</Project>
+      <Name>Aurora.Core.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
