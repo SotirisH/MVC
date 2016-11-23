@@ -21,6 +21,7 @@ namespace Aurora.Insurance.EFModel
         [StringLength(7)]
         public string Id { get; set; }
         [StringLength(50)]
+        [Required]
         public string Description { get; set; }
     }
 }
