@@ -10,6 +10,8 @@ namespace Aurora.Insurance.EFModel
     {
         public int Id { get; set; }
         public string ContractNumber { get; set; }
+        public string ReceiptNumber { get; set; }
+        public DateTime IssueDate { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime ExpireDate { get; set; }
         public decimal GrossAmount { get; set; }
@@ -17,9 +19,8 @@ namespace Aurora.Insurance.EFModel
         public decimal TaxAmount { get; set; }
         public string PlateNumber { get; set; }
         public bool IsCanceled { get; set; }
+        public DateTime? CanceledDate { get; set; }
         public  virtual Company Company { get; set; }
         public virtual Person Person { get; set; }
-
-
     }
 }
