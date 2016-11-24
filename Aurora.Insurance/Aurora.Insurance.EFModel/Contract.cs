@@ -38,6 +38,7 @@ namespace Aurora.Insurance.EFModel
         public bool IsCanceled { get; set; }
         public DateTime? CanceledDate { get; set; }
         public  virtual Company Company { get; set; }
+        public int PersonId { get; set; }
         public virtual Person Person { get; set; }
     }
 }
