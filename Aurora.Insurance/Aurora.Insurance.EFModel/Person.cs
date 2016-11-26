@@ -23,7 +23,9 @@ namespace Aurora.Insurance.EFModel
         public string TaxId { get; set; }
         [StringLength(250)]
         public string Address { get; set; }
-        [StringLength(7)]
+        [StringLength(12)]
         public string ZipCode { get; set; }
+
+        public virtual ICollection<Phone> Phones { get; set; }
     }
 }

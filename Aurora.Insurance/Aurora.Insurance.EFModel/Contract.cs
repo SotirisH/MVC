@@ -37,6 +37,8 @@ namespace Aurora.Insurance.EFModel
         public string PlateNumber { get; set; }
         public bool IsCanceled { get; set; }
         public DateTime? CanceledDate { get; set; }
+        // Because the company's PK is string the Required attribute must be set
+        [Required]
         public  virtual Company Company { get; set; }
         public int PersonId { get; set; }
         public virtual Person Person { get; set; }

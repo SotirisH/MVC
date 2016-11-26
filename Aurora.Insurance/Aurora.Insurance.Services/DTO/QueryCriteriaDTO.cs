@@ -20,9 +20,9 @@ namespace Aurora.Insurance.Services.DTO
         public DateTime? StartDateFrom { get; set; }
         public DateTime? StartDateTo { get; set; }
         public DateTime? ExpireDateFrom { get; set; }
-        public DateTime? ExpireDateto { get; set; }
+        public DateTime? ExpireDateTo { get; set; }
         public string PlateNumber { get; set; }
-        public bool IsCanceled { get; set; }
+        public bool? IsCanceled { get; set; }
         public DateTime? CanceledDate { get; set; }
         public string CompanyId { get; set; }
 

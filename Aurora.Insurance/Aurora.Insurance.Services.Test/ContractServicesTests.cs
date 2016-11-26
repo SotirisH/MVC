@@ -17,9 +17,10 @@ namespace Aurora.Insurance.Services.Tests
         {
             var target = new ContractServices();
             QueryCriteriaDTO queryCriteriaDTO = new QueryCriteriaDTO();
-            queryCriteriaDTO.ContractNumber = "5671395";
+            queryCriteriaDTO.ContractNumber = "5822438";
 
-            target.GetContracts(queryCriteriaDTO);
+            var result=target.GetContracts(queryCriteriaDTO);
+            Assert.IsNotNull(result);
         }
     }
 }

@@ -34,6 +34,11 @@ namespace Aurora.Insurance.Services.DTO
         public string ZipCode { get; set; }
         public string CompanyId { get; set; }
         public string CompanyDescription { get; set; }
-        public string Number { get; set; }
+        public string MobileNumber { get; set; }
+        public bool ContainsMobile {
+            get {
+                return !string.IsNullOrWhiteSpace(MobileNumber);
+            } }
+
     }
 }

@@ -19,6 +19,7 @@ namespace Aurora.Insurance.EFModel
         [StringLength(50)]
         public string Number { get; set; }
         public PhoneType PhoneType { get; set; }
+        [Required]
         public virtual Person Person { get; set; }
     }
 }
