@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuditableDbContext.cs" />
     <Compile Include="DbFactory.cs" />
     <Compile Include="Disposable.cs" />
     <Compile Include="EntityBase.cs" />
