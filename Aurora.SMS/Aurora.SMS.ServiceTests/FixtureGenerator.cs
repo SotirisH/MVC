@@ -45,32 +45,47 @@ namespace Aurora.SMS.ServiceTests
                 {
                     GroupName="Contract",
                     Name="IssueDate",
-                    Description="The Issue Date"
+                    Description="The Issue Date",
+                    DataFormat="dd/MM/yyyy"
+
                 },
                 new EFModel.TemplateField
                 {
                     GroupName="Contract",
                     Name="StartDate",
-                    Description="The Start Date"
+                    Description="The Start Date",
+                    DataFormat="dd/MM/yyyy"
                 },
                 new EFModel.TemplateField
                 {
                     GroupName="Contract",
                     Name="ExpireDate",
-                    Description="The Expire Date"
+                    Description="The Expire Date",
+                    DataFormat="dd/MM/yyyy"
                 },
                 new EFModel.TemplateField
                 {
                     GroupName="Contract",
                     Name="GrossAmount",
-                    Description="The GrossAmount"
+                    Description="The GrossAmount",
+                    DataFormat="0.00"
                 },
                 new EFModel.TemplateField
                 {
                     GroupName="Contract",
                     Name="NetAmount",
-                    Description="The NetAmount"
+                    Description="The NetAmount",
+                    DataFormat="0.00"
                 },
+                new EFModel.TemplateField
+                {
+                    GroupName="Contract",
+                    Name="TaxAmount",
+                    Description="The TaxAmount",
+                    DataFormat="0.00"
+                },
+
+
                 new EFModel.TemplateField
                 {
                     GroupName="Contract",
@@ -81,7 +96,8 @@ namespace Aurora.SMS.ServiceTests
                 {
                     GroupName="Contract",
                     Name="CanceledDate",
-                    Description="The CanceledDate"
+                    Description="The CanceledDate",
+                    DataFormat="dd/MM/yyyy"
                 },
                 new EFModel.TemplateField
                 {
@@ -100,45 +116,77 @@ namespace Aurora.SMS.ServiceTests
                     GroupName="Person",
                     Name="LastName",
                     Description="The LastName"
+                },
+                new EFModel.TemplateField
+                {
+                    GroupName="Person",
+                    Name="DrivingLicenceNum",
+                    Description="The LastName"
+                },
+                new EFModel.TemplateField
+                {
+                    GroupName="Person",
+                    Name="TaxId",
+                    Description="The LastName"
+                },
+                new EFModel.TemplateField
+                {
+                    GroupName="Person",
+                    Name="Address",
+                    Description="The LastName"
+                },
+                new EFModel.TemplateField
+                {
+                    GroupName="Person",
+                    Name="ZipCode",
+                    Description="The LastName"
+                },
+                new EFModel.TemplateField
+                {
+                    GroupName="Person",
+                    Name="BirthDate",
+                    Description="The LastName",
+                    DataFormat="dd/MM/yyyy"
                 }
+
             };
         }
 
         public static ICollection<ContractDTO> CreateSMSRecepients(int elements = 2)
         {
             var lst = new List<ContractDTO>();
-            for (var i=0;i<elements;i++)
+            for (var i = 0; i < elements; i++)
             {
                 Bogus.Faker faker = new Bogus.Faker();
                 var mockPerson = new Bogus.Person();
                 var gross = faker.Random.Number(100, 1000);
                 var tax = (decimal)((double)gross * (10d / 100d));
                 lst.Add(new ContractDTO()
-                    {
-                        Address = mockPerson.Address.Street,
-                        BirthDate = mockPerson.DateOfBirth,
-                        DrivingLicenceNum = faker.Lorem.Letter().ToUpper() + faker.Lorem.Letter().ToUpper() + "-" + faker.Random.UInt(10000, 99999).ToString(),
-                        FatherName = faker.Name.FirstName(),
-                        FirstName = mockPerson.FirstName,
-                        LastName = mockPerson.LastName,
-                        TaxId = faker.Random.UInt(1000000, 9999999).ToString(),
-                        ZipCode = mockPerson.Address.ZipCode,
-                        CompanyDescription = faker.Company.CompanyName(),
-                        CompanyId= faker.Random.UShort().ToString(),
-                        ContractNumber = faker.Random.Number(1000000, 9999999).ToString(),
-                        IssueDate = DateTime.Today,
-                        ExpireDate = DateTime.Today.AddMonths(6),
-                        GrossAmount = gross,
-                        TaxAmount = tax,
-                        NetAmount = gross - tax,
-                        PlateNumber = faker.Lorem.Letter().ToUpper() +
+                {
+                    Address = mockPerson.Address.Street,
+                    BirthDate = mockPerson.DateOfBirth,
+                    DrivingLicenceNum = faker.Lorem.Letter().ToUpper() + faker.Lorem.Letter().ToUpper() + "-" + faker.Random.UInt(10000, 99999).ToString(),
+                    FatherName = faker.Name.FirstName(),
+                    FirstName = mockPerson.FirstName,
+                    LastName = mockPerson.LastName,
+                    TaxId = faker.Random.UInt(1000000, 9999999).ToString(),
+                    ZipCode = mockPerson.Address.ZipCode,
+                    CompanyDescription = faker.Company.CompanyName(),
+                    CompanyId = faker.Random.UShort().ToString(),
+                    ContractNumber = faker.Random.Number(1000000, 9999999).ToString(),
+                    IssueDate = DateTime.Today,
+                    ExpireDate = DateTime.Today.AddMonths(6),
+                    GrossAmount = gross,
+                    TaxAmount = tax,
+                    NetAmount = gross - tax,
+                    PlateNumber = faker.Lorem.Letter().ToUpper() +
                                         faker.Lorem.Letter().ToUpper() +
                                         faker.Lorem.Letter().ToUpper() +
                                         "-" +
                                         faker.Random.UInt(10000, 99999).ToString(),
-                        ReceiptNumber = faker.Random.Number(10000000, 99999999).ToString(),
-                        StartDate = DateTime.Today,
-                        MobileNumber = faker.Phone.PhoneNumber()
+                    ReceiptNumber = faker.Random.Number(10000000, 99999999).ToString(),
+                    StartDate = DateTime.Today,
+                    MobileNumber = faker.Phone.PhoneNumber()
                 });
             }
             return lst;

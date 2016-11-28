@@ -45,7 +45,7 @@ namespace Aurora.SMS.Service.Tests
                             for the plate:{PlateNumber} has been issued. The amounts are:
                             Gross:{GrossAmount}, Tax:{TaxAmount}, net:{NetAmount}.
                             A hardcopy will be delivered at {Address} , {ZipCode}";
-
+           
             var templateList = new List<Template>() { template };
             var mockTemplateSet = EFHelper.GetQueryableMockDbSet(templateList);
             // I have to use object[]

@@ -14,7 +14,15 @@ namespace Aurora.SMS.EFModel
     }
     public class SMSHistory
     {
-        public int id { get; set; }
+        /// <summary>
+        /// The id is long because we expect huge number of messages to be sent over the years
+        /// </summary>
+        public long Id { get; set; }
+        /// <summary>
+        /// Everytime the user sends a batch of messages a session is created
+        /// </summary>
+        public Guid SessionId { get; set; }
+        public string SessionName { get; set; }
         /// <summary>
         /// Ths SMS message that has been sent to the SMs server
         /// </summary>

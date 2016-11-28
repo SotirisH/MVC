@@ -53,32 +53,47 @@ namespace Aurora.SMS.Service.Migrations
                 {
                     GroupName="Contract",
                     Name="IssueDate",
-                    Description="The Issue Date"
+                    Description="The Issue Date",
+                    DataFormat="dd/MM/yyyy"
+
                 },
                 new EFModel.TemplateField
                 {
                     GroupName="Contract",
                     Name="StartDate",
-                    Description="The Start Date"
+                    Description="The Start Date",
+                    DataFormat="dd/MM/yyyy"
                 },
                 new EFModel.TemplateField
                 {
                     GroupName="Contract",
                     Name="ExpireDate",
-                    Description="The Expire Date"
+                    Description="The Expire Date",
+                    DataFormat="dd/MM/yyyy"
                 },
                 new EFModel.TemplateField
                 {
                     GroupName="Contract",
                     Name="GrossAmount",
-                    Description="The GrossAmount"
+                    Description="The GrossAmount",
+                    DataFormat="0.00"
                 },
                 new EFModel.TemplateField
                 {
                     GroupName="Contract",
                     Name="NetAmount",
-                    Description="The NetAmount"
+                    Description="The NetAmount",
+                    DataFormat="0.00"
                 },
+                new EFModel.TemplateField
+                {
+                    GroupName="Contract",
+                    Name="TaxAmount",
+                    Description="The TaxAmount",
+                    DataFormat="0.00"
+                },
+
+                
                 new EFModel.TemplateField
                 {
                     GroupName="Contract",
@@ -89,7 +104,8 @@ namespace Aurora.SMS.Service.Migrations
                 {
                     GroupName="Contract",
                     Name="CanceledDate",
-                    Description="The CanceledDate"
+                    Description="The CanceledDate",
+                    DataFormat="dd/MM/yyyy"
                 },                
                 new EFModel.TemplateField
                 {
@@ -108,6 +124,37 @@ namespace Aurora.SMS.Service.Migrations
                     GroupName="Person",
                     Name="LastName",
                     Description="The LastName"
+                },
+                new EFModel.TemplateField
+                {
+                    GroupName="Person",
+                    Name="DrivingLicenceNum",
+                    Description="The LastName"
+                },
+                new EFModel.TemplateField
+                {
+                    GroupName="Person",
+                    Name="TaxId",
+                    Description="The LastName"
+                },
+                new EFModel.TemplateField
+                {
+                    GroupName="Person",
+                    Name="Address",
+                    Description="The LastName"
+                },
+                new EFModel.TemplateField
+                {
+                    GroupName="Person",
+                    Name="ZipCode",
+                    Description="The LastName"
+                },
+                new EFModel.TemplateField
+                {
+                    GroupName="Person",
+                    Name="BirthDate",
+                    Description="The LastName",
+                    DataFormat="dd/MM/yyyy"
                 }
             };
         }

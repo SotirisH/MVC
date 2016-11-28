@@ -34,10 +34,12 @@ namespace Aurora.SMS.Service
         /// <param name="recepients"></param>
         /// <param name="templateId">The templateId that will be used</param>
         /// <returns></returns>
-        public IEnumerable<EFModel.SMSHistory> ConstructSMSMessages(IEnumerable<ContractDTO> recepients, int templateId)
+        public IEnumerable<DTO.SMSMessageDTO> ConstructSMSMessages(IEnumerable<ContractDTO> recepients, int templateId)
         {
             var template = _templateRepository.GetById(templateId);
             var templateFields = _templatefieldsRepository.GetAll();
+
+            var smsList = new List<DTO.SMSMessageDTO>();
             if (template == null)
             {
                 throw new NullReferenceException(string.Format("The template with id:{0} cannot be found in the db!",templateId));
@@ -50,14 +52,29 @@ namespace Aurora.SMS.Service
                 // Nice tester:https://regex101.com/r/cU5lC2/1
                 /* The rule is that the injected fields inside the template text have the format {templateField.Name}
                  * Here, i loop through all the templateFields(there are only few so iloop them all even if don't exist in thetemplate text )
-                 * and i repace with a value that i extract from the recepient Object using reflexion
+                 * and i repace with a value that i extract from the recepient Object using reflection
                  * */
                 foreach (var templateField in templateFields)
                 {
-                    smsText = Regex.Replace(smsText, "({" + templateField.Name + "})", Convert.ToString(recepient.GetType().GetProperty(templateField.Name).GetValue(recepient, null)));
+                    smsText = Regex.Replace(smsText, "({" + templateField.Name + "})", GetFormattedValue(recepient, templateField));
                 }
+                smsList.Add(new DTO.SMSMessageDTO(){
+                    ContractId= recepient.Contractid,
+                    Message=smsText,
+                    MobileNumber=recepient.MobileNumber,
+                    PersonId=recepient.PersonId,
+                    TemplateId= templateId
+                });
+
             }
-            return null;
+            return smsList;
+        }
+
+
+        private string GetFormattedValue(ContractDTO recepient,
+                                            EFModel.TemplateField templateField)
+        {
+            return  string.Format("{0:" + (templateField.DataFormat ?? string.Empty) + "}", recepient.GetType().GetProperty(templateField.Name).GetValue(recepient, null));
         }
     }
 }

@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Data\Configurations.cs" />
     <Compile Include="Data\SMSDbFactory.cs" />
+    <Compile Include="DTO\SMSMessageDTO.cs" />
     <Compile Include="DTO\TemplateDTO.cs" />
     <Compile Include="DTO\TemplateFieldDTO.cs" />
     <Compile Include="Migrations\Configuration.cs" />

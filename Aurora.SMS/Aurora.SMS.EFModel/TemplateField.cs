@@ -12,5 +12,6 @@ namespace Aurora.SMS.EFModel
         public string Name { get; set; }
         public string Description { get; set; }
         public string GroupName { get; set; }
+        public string DataFormat { get; set; }
     }
 }
