@@ -42,6 +42,8 @@ namespace Aurora.SMS.Service.Data
             Property(p => p.Message).IsRequired().HasMaxLength(255);
             Property(p => p.MobileNumber).IsRequired().HasMaxLength(50);
             Property(p => p.ProviderMsgId).HasMaxLength(255);
+            Property(p => p.TemplateId).IsRequired();
+            Property(p => p.ProviderId).IsRequired();
         }
     }
 

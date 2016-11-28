@@ -32,7 +32,7 @@ namespace Aurora.Core.Data
                 dbContext.Dispose();
         }
 
-        protected virtual T Init()
+        public virtual T Init()
         {
             return new T();
         }

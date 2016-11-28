@@ -55,12 +55,12 @@ namespace Aurora.Insurance.Services.Test
                 db.SaveChanges();
             }
             // populate DB with mock entities
-            using (var db2 = new InsuranceDb())
+            for (var i = 0; i < 1000; i++)
             {
-                for (var i = 0; i < 1000; i++)
+                using (var db2 = new InsuranceDb())
                 {
-
-                    CreateMockContract(db2);
+                    db2.Configuration.AutoDetectChangesEnabled = false;
+                        CreateMockContract(db2);
                 }
             }
            

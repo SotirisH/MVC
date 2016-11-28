@@ -5,14 +5,14 @@ namespace Aurora.SMS.Service.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Aurora.SMS.Service.SMSDb>
+    internal sealed class Configuration : DbMigrationsConfiguration<Aurora.SMS.Service.Data.SMSDb>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = trus;
+            AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Aurora.SMS.Service.SMSDb context)
+        protected override void Seed(Aurora.SMS.Service.Data.SMSDb context)
         {
             //  This method will be called after migrating to the latest version.
 

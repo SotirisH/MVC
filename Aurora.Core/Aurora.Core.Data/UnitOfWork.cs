@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Aurora.Core.Data
 {
-    public class UnitOfWork<DB> : IUnitOfWork where DB : DbContext, IAuditableDBContext, new() 
+    public class UnitOfWork<DB> : IUnitOfWork<DB> where DB : DbContext, IAuditableDBContext, new() 
     {
         /// <summary>
         /// The user name that modifies the object
@@ -43,11 +43,17 @@ namespace Aurora.Core.Data
             get { return _dbFactory.DBContext(); }
         }
 
-        string IUnitOfWork.UserName
+        public DbFactory<DB> DbFactory
+        {
+            get { return _dbFactory; }
+        }
+
+
+        public string UserName
         {
             get
             {
-                throw new NotImplementedException();
+                return _userName;
             }
         }
 

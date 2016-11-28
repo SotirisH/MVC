@@ -12,6 +12,6 @@ namespace Aurora.Core.Data
     /// </summary>
     public interface IAuditableDBContext
     {
-        void SaveChanges(string userName);
+        int SaveChanges(string userName);
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Aurora.Core.Data
 {
-    public abstract class AuditableDbContext: DbContext
+    public abstract class AuditableDbContext: DbContext, IAuditableDBContext
     {
         protected AuditableDbContext(string dbConnection):base(dbConnection)
         {
@@ -46,5 +46,7 @@ namespace Aurora.Core.Data
             }
             return base.SaveChanges();
         }
+
+       
     }
 }

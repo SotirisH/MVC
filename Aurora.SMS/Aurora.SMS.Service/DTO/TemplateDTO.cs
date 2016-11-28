@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aurora.SMS.EFModel
+namespace Aurora.SMS.Service.DTO
 {
     /// <summary>
-    /// Represents an SMS Template
+    /// Represents an SMS Template DTO
     /// </summary>
-    public class Template:EntityBase
+    public class TemplateDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

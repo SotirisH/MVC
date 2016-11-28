@@ -18,10 +18,12 @@ namespace Aurora.Core.Data
         /// <summary>
         /// User name either from the AD or the application
         /// </summary>
+        [StringLength(50)]
         public string CreatedBy { get; set; }
         // http://stackoverflow.com/questions/27038524/sql-column-default-value-with-entity-framework
         // https://andy.mehalick.com/2014/02/06/ef6-adding-a-created-datetime-column-automatically-with-code-first-migrations/
         public DateTime? CreatedOn { get; set; }
+        [StringLength(50)]
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
        

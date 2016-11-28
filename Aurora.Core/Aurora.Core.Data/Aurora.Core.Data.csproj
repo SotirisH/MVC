@@ -57,8 +57,9 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryBase.cs" />
+    <Compile Include="GenericRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
+    <Compile Include="UnitOfWorkService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

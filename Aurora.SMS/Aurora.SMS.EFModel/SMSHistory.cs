@@ -22,15 +22,22 @@ namespace Aurora.SMS.EFModel
         public MessageStatus Status { get; set; }
         public DateTime SendDateTime { get; set; }
         public string MobileNumber { get; set; }
-        public int PersonId { get; set; }
+        public int? PersonId { get; set; }
         public int? ContractId { get; set; }
         
+        
         /// <summary>
-        /// The identity of the message of the provider DB
+        /// The identity of the message that has been assinged by the SMS provider
         /// </summary>
         public string ProviderMsgId { get; set; }
         public string ProviderFeedback { get; set; }
         public DateTime ProviderFeedBackDateTime { get; set; }
+
+        public  int ProviderId { get; set; }
+        public Provider Provider { get; set; }
+
+        public int TemplateId { get; set; }
+        public Template Template { get; set; }
 
     }
 }
