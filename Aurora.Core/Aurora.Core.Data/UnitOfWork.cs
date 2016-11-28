@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Aurora.Core.Data
 {
+    /// <summary>
+    /// The unit of work guarantees that all the repositories will use the same context(during a request)
+    /// </summary>
+    /// <typeparam name="DB"></typeparam>
     public class UnitOfWork<DB> : IUnitOfWork<DB> where DB : DbContext, IAuditableDBContext, new() 
     {
         /// <summary>

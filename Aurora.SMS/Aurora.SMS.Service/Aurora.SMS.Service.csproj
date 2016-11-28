@@ -56,9 +56,12 @@
     <Compile Include="Data\Configurations.cs" />
     <Compile Include="Data\SMSDbFactory.cs" />
     <Compile Include="DTO\TemplateDTO.cs" />
+    <Compile Include="DTO\TemplateFieldDTO.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\SMSDb.cs" />
+    <Compile Include="SMSServices.cs" />
+    <Compile Include="TemplateFieldServices.cs" />
     <Compile Include="TemplateServices.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +74,10 @@
     <ProjectReference Include="..\..\Aurora.Core\Aurora.Core.Data\Aurora.Core.Data.csproj">
       <Project>{31b2a3a7-e67e-4156-b216-5fb13c370910}</Project>
       <Name>Aurora.Core.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Aurora.Insurance\Aurora.Insurance.Services\Aurora.Insurance.Services.csproj">
+      <Project>{095927c3-192a-43e4-8e62-55cff50c9d57}</Project>
+      <Name>Aurora.Insurance.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\Aurora.SMS.EFModel\Aurora.SMS.EFModel.csproj">
       <Project>{acc24b1f-b706-4b15-95ca-8639e3956e53}</Project>

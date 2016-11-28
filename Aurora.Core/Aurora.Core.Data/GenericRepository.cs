@@ -86,12 +86,20 @@ namespace Aurora.Core.Data
             return dbSet.Where(where).ToList();
         }
 
+        /// <summary>
+        /// Returns the first item that complies with the criteria
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
         public T Get(Expression<Func<T, bool>> where)
         {
             return dbSet.Where(where).FirstOrDefault<T>();
         }
 
-        
+        public virtual IQueryable<T> GetAsQueryable()
+        {
+            return dbSet.AsQueryable();
+        }
 
     }
 }

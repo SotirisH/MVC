@@ -8,3 +8,12 @@ I:\GitRepo\MVC\Aurora.Core\Aurora.Core.Data\bin\Debug\EntityFramework.SqlServer.
 I:\GitRepo\MVC\Aurora.Core\Aurora.Core.Data\obj\Debug\Aurora.Core.Data.csprojResolveAssemblyReference.cache
 I:\GitRepo\MVC\Aurora.Core\Aurora.Core.Data\obj\Debug\Aurora.Core.Data.dll
 I:\GitRepo\MVC\Aurora.Core\Aurora.Core.Data\obj\Debug\Aurora.Core.Data.pdb
+C:\Git2\MVC\Aurora.Core\Aurora.Core.Data\bin\Debug\Aurora.Core.Data.dll.config
+C:\Git2\MVC\Aurora.Core\Aurora.Core.Data\bin\Debug\Aurora.Core.Data.dll
+C:\Git2\MVC\Aurora.Core\Aurora.Core.Data\bin\Debug\Aurora.Core.Data.pdb
+C:\Git2\MVC\Aurora.Core\Aurora.Core.Data\bin\Debug\EntityFramework.dll
+C:\Git2\MVC\Aurora.Core\Aurora.Core.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Git2\MVC\Aurora.Core\Aurora.Core.Data\bin\Debug\EntityFramework.xml
+C:\Git2\MVC\Aurora.Core\Aurora.Core.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Git2\MVC\Aurora.Core\Aurora.Core.Data\obj\Debug\Aurora.Core.Data.dll
+C:\Git2\MVC\Aurora.Core\Aurora.Core.Data\obj\Debug\Aurora.Core.Data.pdb

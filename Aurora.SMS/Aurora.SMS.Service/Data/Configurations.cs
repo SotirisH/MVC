@@ -30,8 +30,6 @@ namespace Aurora.SMS.Service.Data
             Property(p => p.Url).IsRequired().HasMaxLength(255);
             Property(p => p.UserName).HasMaxLength(50);
             Property(p => p.PassWord).HasMaxLength(50);
-            Property(p => p.AssemblyName).IsRequired().HasMaxLength(255);
-            Property(p => p.AssemblyVersion).IsRequired().HasMaxLength(255);
         }
     }
 
@@ -62,8 +60,8 @@ namespace Aurora.SMS.Service.Data
     {
         public TemplateFieldConfiguration()
         {
-            Property(p => p.Name).IsRequired().HasMaxLength(50)
-                   .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+            HasKey(t => t.Name);
+            Property(p => p.Name).IsRequired().HasMaxLength(50);
             Property(p => p.Description).HasMaxLength(255);
             Property(p => p.GroupName).HasMaxLength(50);
         }

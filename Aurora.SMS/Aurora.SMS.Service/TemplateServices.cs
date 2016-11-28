@@ -12,6 +12,11 @@ namespace Aurora.SMS.Service
     public interface ITemplateServices
     {
         void Update(TemplateDTO template);
+        /// <summary>
+        /// Checks if the template has references to the SMS history table
+        /// </summary>
+        /// <param name="templateId"></param>
+        /// <returns></returns>
         bool IsTemplateUsed(int templateId);
         void DeleteTemplate(int templateId);
         void CreateTemplate(TemplateDTO template);
@@ -19,7 +24,8 @@ namespace Aurora.SMS.Service
 
     public class TemplateServices:  UnitOfWorkService<SMSDb>, ITemplateServices
     {
-        private GenericRepository<EFModel.Template, SMSDb> _templateRepository;
+        private readonly GenericRepository<EFModel.Template, SMSDb> _templateRepository;
+
         public TemplateServices(IUnitOfWork<SMSDb> unitOfWork):base(unitOfWork)
         {
             _templateRepository = new GenericRepository<EFModel.Template, SMSDb>(_unitOfWork.DbFactory);
@@ -35,6 +41,11 @@ namespace Aurora.SMS.Service
         public void DeleteTemplate(int templateId)
         {
             _templateRepository.Delete(templateId);
+        }
+
+        public IEnumerable<TemplateFieldDTO> GetAllTemplateFields()
+        {
+            throw new NotImplementedException();
         }
 
         public bool IsTemplateUsed(int templateId)

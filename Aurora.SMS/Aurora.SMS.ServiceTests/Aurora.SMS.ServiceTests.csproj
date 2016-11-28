@@ -79,12 +79,17 @@
     <Compile Include="EFHelper.cs" />
     <Compile Include="FixtureGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SMSServicesTests.cs" />
     <Compile Include="TemplateServicesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Aurora.Core\Aurora.Core.Data\Aurora.Core.Data.csproj">
       <Project>{31b2a3a7-e67e-4156-b216-5fb13c370910}</Project>
       <Name>Aurora.Core.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Aurora.Insurance\Aurora.Insurance.Services\Aurora.Insurance.Services.csproj">
+      <Project>{095927C3-192A-43E4-8E62-55CFF50C9D57}</Project>
+      <Name>Aurora.Insurance.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\Aurora.SMS.EFModel\Aurora.SMS.EFModel.csproj">
       <Project>{acc24b1f-b706-4b15-95ca-8639e3956e53}</Project>

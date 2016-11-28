@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace Aurora.Insurance.Services.DTO
 {
     /// <summary>
-    /// The compact returned object from the service
+    /// The flatten object that is returned from the service "GetContracts"
     /// </summary>
     public class ContractDTO
     {
-        public int contractid { get; set; }
+        public int Contractid { get; set; }
         public string ContractNumber { get; set; }
         public string ReceiptNumber { get; set; }
         public DateTime IssueDate { get; set; }

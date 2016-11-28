@@ -12,12 +12,10 @@ namespace Aurora.SMS.EFModel
     /// </summary>
     public class Provider:EntityBase
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
         public string UserName { get; set; }
         public string PassWord { get; set; }
-        public string AssemblyName { get; set; }
-        public string AssemblyVersion { get; set; }
     }
 }

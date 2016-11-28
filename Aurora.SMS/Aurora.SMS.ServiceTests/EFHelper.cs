@@ -18,7 +18,7 @@ namespace Aurora.SMS.ServiceTests
     public static class EFHelper
     {
 
-        public static DbSet<T> GetQueryableMockDbSet<T>(List<T> sourceList) where T : class
+        public static Mock<DbSet<T>> GetQueryableMockDbSet<T>(ICollection<T> sourceList) where T : class
         {
             var queryable = sourceList.AsQueryable();
 
@@ -33,8 +33,7 @@ namespace Aurora.SMS.ServiceTests
             // The Add is not exception so it needs to be set up to do what you need otherwise it does nothing.
             // http://stackoverflow.com/questions/31349351/how-to-add-an-item-to-a-mock-dbset-using-moq
             dbSet.Setup(d => d.Add(It.IsAny<T>())).Callback<T>((s) => sourceList.Add(s));
-
-            return dbSet.Object;
+            return dbSet;
         }
     }
 }

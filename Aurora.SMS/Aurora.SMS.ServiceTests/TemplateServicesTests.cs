@@ -30,15 +30,15 @@ namespace Aurora.SMS.Service.Tests
                FixtureGenerator.CreateSMSHistory(mockTemplateId)
             };
             var mockSMSHistorySet = EFHelper.GetQueryableMockDbSet(smsHistoryList);
-            mockContext.Setup(c => c.SMSHistoryRecords).Returns(mockSMSHistorySet);
+            mockContext.Setup(c => c.SMSHistoryRecords).Returns(mockSMSHistorySet.Object);
 
             // Set the template
             var templateList = new List<Template>();
             var mockTemplateSet = EFHelper.GetQueryableMockDbSet(templateList);
             //I need to set the Set<Template> Template  
             // because the line dbSet = DbContext.Set<T>(); on the Generic repository fails
-            mockContext.Setup(m => m.Set<Template>()).Returns(mockTemplateSet);
-            mockContext.Setup(c => c.Templates).Returns(mockTemplateSet);
+            mockContext.Setup(m => m.Set<Template>()).Returns(mockTemplateSet.Object);
+            mockContext.Setup(c => c.Templates).Returns(mockTemplateSet.Object);
 
 
             // Mocking up dbFactory

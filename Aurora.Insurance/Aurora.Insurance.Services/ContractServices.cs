@@ -118,7 +118,7 @@ namespace Aurora.Insurance.Services
                         CanceledDate=s.CanceledDate,
                         CompanyDescription=s.Company.Description,
                         CompanyId=s.Company.Id,
-                        contractid=s.Id,
+                        Contractid=s.Id,
                         ContractNumber=s.ContractNumber,
                         DrivingLicenceNum=s.Person.DrivingLicenceNum,
                         ExpireDate=s.ExpireDate,

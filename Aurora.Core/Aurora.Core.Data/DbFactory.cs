@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace Aurora.Core.Data
 {
     /// <summary>
-    /// Factory responsible for managing the instance of DbContext
+    /// Factory responsible for managing the instance of DbContext.
+    /// Supports Init and dispose funtionality
     /// </summary>
     public abstract class DbFactory<T> : Disposable where T : DbContext , IAuditableDBContext ,new()
     {
