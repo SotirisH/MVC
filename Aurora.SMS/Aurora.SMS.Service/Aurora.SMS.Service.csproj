@@ -61,6 +61,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\SMSDb.cs" />
+    <Compile Include="Providers\ISMSProvider.cs" />
     <Compile Include="SMSServices.cs" />
     <Compile Include="TemplateFieldServices.cs" />
     <Compile Include="TemplateServices.cs" />

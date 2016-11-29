@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.Insurance.EFModel", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aurora.Insurance", "Aurora.Insurance", "{FCA3B7C0-7991-414B-A450-D366A454689B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.FakeProvider", "Aurora.SMS.FakeProvider\Aurora.SMS.FakeProvider.csproj", "{5467BB38-047C-45C7-9FED-6B8E19D4EA05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.FakeProviderTests", "Aurora.SMS.FakeProviderTests\Aurora.SMS.FakeProviderTests.csproj", "{92977B98-FF5D-46E0-A311-3847AE923388}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,14 @@ Global
 		{77A1EAAB-C06A-49AB-A57A-1FEA9FAE3EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77A1EAAB-C06A-49AB-A57A-1FEA9FAE3EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77A1EAAB-C06A-49AB-A57A-1FEA9FAE3EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5467BB38-047C-45C7-9FED-6B8E19D4EA05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5467BB38-047C-45C7-9FED-6B8E19D4EA05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5467BB38-047C-45C7-9FED-6B8E19D4EA05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5467BB38-047C-45C7-9FED-6B8E19D4EA05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92977B98-FF5D-46E0-A311-3847AE923388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92977B98-FF5D-46E0-A311-3847AE923388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92977B98-FF5D-46E0-A311-3847AE923388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92977B98-FF5D-46E0-A311-3847AE923388}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

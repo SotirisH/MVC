@@ -1,0 +1,5 @@
+﻿http://localhost:8080/api/SMSGateway/SendSMS?username=sdsd&password=ww&message=Mymsg&mobileNumber=43532534&messageExternalId=100
+http://localhost:8080/api/SMSGateway/RetrieveCredits?username=sdsd&password=ww
+Introducing the ASP.NET Web API Help Page
+
+https://blogs.msdn.microsoft.com/yaohuang1/2012/08/15/introducing-the-asp-net-web-api-help-page-preview/
