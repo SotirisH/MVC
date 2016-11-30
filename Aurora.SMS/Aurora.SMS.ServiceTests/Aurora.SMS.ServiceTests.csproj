@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Aurora.SMS.ServiceTests</RootNamespace>
     <AssemblyName>Aurora.SMS.ServiceTests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -76,6 +76,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ClientProviderTests.cs" />
     <Compile Include="EFHelper.cs" />
     <Compile Include="FixtureGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +95,10 @@
     <ProjectReference Include="..\Aurora.SMS.EFModel\Aurora.SMS.EFModel.csproj">
       <Project>{acc24b1f-b706-4b15-95ca-8639e3956e53}</Project>
       <Name>Aurora.SMS.EFModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Aurora.SMS.Providers\Aurora.SMS.Providers.csproj">
+      <Project>{aa960e40-2769-46d6-8188-b201a8bf15e2}</Project>
+      <Name>Aurora.SMS.Providers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Aurora.SMS.Service\Aurora.SMS.Service.csproj">
       <Project>{DED286C3-CC7A-4CF0-8902-8C947549E1BA}</Project>

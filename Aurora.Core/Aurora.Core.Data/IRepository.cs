@@ -17,7 +17,7 @@ namespace Aurora.Core.Data
         void Delete(T entity);
         void Delete(Expression<Func<T, bool>> where);
         // Get an entity by int id
-        T GetById(int id);
+        T GetById(object id,bool throwExceptionIfNotFound= false);
         // Get an entity using delegate
         T Get(Expression<Func<T, bool>> where);
         // Gets all entities of type T

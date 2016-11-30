@@ -61,7 +61,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\SMSDb.cs" />
-    <Compile Include="Providers\ISMSProvider.cs" />
     <Compile Include="SMSServices.cs" />
     <Compile Include="TemplateFieldServices.cs" />
     <Compile Include="TemplateServices.cs" />
@@ -84,6 +83,10 @@
     <ProjectReference Include="..\Aurora.SMS.EFModel\Aurora.SMS.EFModel.csproj">
       <Project>{acc24b1f-b706-4b15-95ca-8639e3956e53}</Project>
       <Name>Aurora.SMS.EFModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Aurora.SMS.Providers\Aurora.SMS.Providers.csproj">
+      <Project>{aa960e40-2769-46d6-8188-b201a8bf15e2}</Project>
+      <Name>Aurora.SMS.Providers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

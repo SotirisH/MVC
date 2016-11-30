@@ -1,4 +1,5 @@
-﻿using Aurora.SMS.FakeProvider.Models;
+﻿
+using Aurora.SMS.FakeProvider.WebApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
 
         public virtual void ApplyDelay()
         {
-            Thread.Sleep(500);
+            Thread.Sleep(1500);
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
         /// <param name="messageExternalId">The external ID will be returned with the result. It is used to track the incoming message</param>
         /// <returns></returns>
         [HttpGet]
-        public Result SendSMS(string username,
+        public SMSResult SendSMS(string username,
                             string password,
                             string message,
                             string mobileNumber,
@@ -65,7 +66,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
         {
             
             Bogus.Faker faker = new Bogus.Faker();
-            Result result = new Result() { Id=Guid.NewGuid(), ExternalId= messageExternalId };
+            SMSResult result = new SMSResult() { Id=Guid.NewGuid(), ExternalId= messageExternalId };
             //try
             //{
                 ApplyDelay();
@@ -122,7 +123,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
         /// <param name="messageExternalId"></param>
         /// <returns></returns>
         [HttpGet]
-        public Result ReSendSMS(string username,
+        public SMSResult ReSendSMS(string username,
                             string password,
                             Guid messageId,
                             string messageExternalId)
@@ -136,7 +137,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
                 messageExternalId);
         }
         [HttpGet]
-        public int RetrieveCredits(string username,
+        public int GetAvailableCredits(string username,
                     string password)
         {
             ApplyDelay();
@@ -145,7 +146,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
         }
 
         [HttpGet]
-        public Result GetMessageStatus(string username,
+        public SMSResult GetMessageStatus(string username,
                                 string password, 
                                 Guid messageId,
                                 string messageExternalId)

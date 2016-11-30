@@ -20,11 +20,11 @@ namespace Aurora.SMS.FakeProvider.Controllers.Tests
             
             var moqController = Moq.Mock.Get(target);
             moqController.Setup(c => c.DecreaseCredit()).Verifiable();
-            // unit tests shoul never bee delayed
+            // unit tests should never be delayed
             moqController.Setup(c => c.ApplyDelay()).Verifiable();
 
            
-            var results = new List<Models.Result>();
+            var results = new List<WebApi.Models.SMSResult>();
             // send 100 mesagges
             for (var i = 0; i < 100; i++)
             {

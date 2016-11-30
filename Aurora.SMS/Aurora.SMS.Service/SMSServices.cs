@@ -20,11 +20,51 @@ namespace Aurora.SMS.Service
     {
         private readonly GenericRepository<EFModel.Template, SMSDb> _templateRepository;
         private readonly GenericRepository<EFModel.TemplateField, SMSDb> _templatefieldsRepository;
+        private readonly GenericRepository<EFModel.Provider, SMSDb> _providerRepository;
+        private readonly GenericRepository<EFModel.SMSHistory, SMSDb> _smsHistoryRepository;
 
         public SMSServices(IUnitOfWork<SMSDb> unitOfWork):base(unitOfWork)
         {
             _templateRepository = new GenericRepository<EFModel.Template, SMSDb>(_unitOfWork.DbFactory);
             _templatefieldsRepository = new GenericRepository<EFModel.TemplateField, SMSDb>(_unitOfWork.DbFactory);
+            _providerRepository = new GenericRepository<EFModel.Provider, SMSDb>(_unitOfWork.DbFactory);
+            _smsHistoryRepository = new GenericRepository<EFModel.SMSHistory, SMSDb>(_unitOfWork.DbFactory);
+        }
+
+        /// <summary>
+        /// Sends messages to the provider, creates a session in the history table and saves the messages as history
+        /// under this session
+        /// </summary>
+        /// <param name="messagesToSent"></param>
+        /// <param name="providerId"></param>
+        /// <returns></returns>
+        public Guid SendSMS(IEnumerable<DTO.SMSMessageDTO> messagesToSent, string providerName)
+        {
+            // get the provider data
+            EFModel.Provider provider = _providerRepository.GetById(providerName, true);
+            Guid sessionId = Guid.NewGuid();
+            // First job is to save the messages into the history table in order to populate the id
+            foreach (var msg in messagesToSent)
+            {
+                EFModel.SMSHistory smsHistory = new EFModel.SMSHistory();
+                smsHistory.ContractId = msg.ContractId;
+                smsHistory.Message = msg.Message;
+                smsHistory.MobileNumber = msg.MobileNumber;
+                smsHistory.PersonId = msg.PersonId;
+                smsHistory.ProviderName = providerName;
+                smsHistory.TemplateId = msg.TemplateId;
+                smsHistory.Status = EFModel.MessageStatus.Pending;
+                smsHistory.SessionId = sessionId;
+                smsHistory.SessionName = providerName + "|" + DateTime.Now;
+                _smsHistoryRepository.Add(smsHistory);
+            }
+            _unitOfWork.Commit();
+
+            var smsClient = Providers.ClientProviderFactory.CreateClient(providerName, provider.UserName, provider.PassWord);
+            foreach (var historysms in _unitOfWork.DbContext.SMSHistoryRecords)
+            {
+                var result = await smsClient.SendSMS();
+            }
         }
 
 

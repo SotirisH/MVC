@@ -80,9 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aurora.SMS.FakeProvider\Aurora.SMS.FakeProvider.csproj">
+    <ProjectReference Include="..\Aurora.SMS.FakeProvider\Aurora.SMS.FakeProvider.WebApi.csproj">
       <Project>{5467BB38-047C-45C7-9FED-6B8E19D4EA05}</Project>
-      <Name>Aurora.SMS.FakeProvider</Name>
+      <Name>Aurora.SMS.FakeProvider.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

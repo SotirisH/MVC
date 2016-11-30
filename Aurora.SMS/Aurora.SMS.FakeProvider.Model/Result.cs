@@ -7,7 +7,7 @@ using System.Web;
 /// Te models are kept in a seperate project 
 /// so they can been shared easily with the HttpClient projects
 /// </summary>
-namespace Aurora.SMS.FakeProvider.WebApi.Models
+namespace Aurora.SMS.FakeProvider.WebApi.Model
 {
     public enum MessageStatus
     {

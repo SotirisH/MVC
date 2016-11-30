@@ -71,9 +71,16 @@ namespace Aurora.Core.Data
                 dbSet.Remove(obj);
         }
 
-        public virtual T GetById(int id)
+        public virtual T GetById(object id, 
+                                bool throwExceptionIfNotFound=false)
         {
-            return dbSet.Find(id);
+            var result = dbSet.Find(id);
+            if (throwExceptionIfNotFound && result==null)
+            {
+                // TODO:Implement a custom exception
+                throw new Exception(string.Format("The Entity of type {0}  with id:{1} could not be found in the database!", dbSet.GetType().Name, id));
+            }
+            return result;
         }
 
         public virtual IEnumerable<T> GetAll()

@@ -19,9 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.Insurance.EFModel", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aurora.Insurance", "Aurora.Insurance", "{FCA3B7C0-7991-414B-A450-D366A454689B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.FakeProvider", "Aurora.SMS.FakeProvider\Aurora.SMS.FakeProvider.csproj", "{5467BB38-047C-45C7-9FED-6B8E19D4EA05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.FakeProvider.WebApi", "Aurora.SMS.FakeProvider\Aurora.SMS.FakeProvider.WebApi.csproj", "{5467BB38-047C-45C7-9FED-6B8E19D4EA05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.FakeProviderTests", "Aurora.SMS.FakeProviderTests\Aurora.SMS.FakeProviderTests.csproj", "{92977B98-FF5D-46E0-A311-3847AE923388}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{2446608B-0D56-4C2C-B600-2AC264A60AE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,5 +74,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{095927C3-192A-43E4-8E62-55CFF50C9D57} = {FCA3B7C0-7991-414B-A450-D366A454689B}
 		{77A1EAAB-C06A-49AB-A57A-1FEA9FAE3EE3} = {FCA3B7C0-7991-414B-A450-D366A454689B}
+		{5467BB38-047C-45C7-9FED-6B8E19D4EA05} = {2446608B-0D56-4C2C-B600-2AC264A60AE8}
+		{92977B98-FF5D-46E0-A311-3847AE923388} = {2446608B-0D56-4C2C-B600-2AC264A60AE8}
 	EndGlobalSection
 EndGlobal

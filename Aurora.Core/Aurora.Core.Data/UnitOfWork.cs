@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Aurora.Core.Data
 {
+    
     /// <summary>
     /// The unit of work guarantees that all the repositories will use the same context(during a request)
     /// </summary>
@@ -70,6 +71,9 @@ namespace Aurora.Core.Data
         {
             return DbContext.SaveChangesAsync();
         }
+
+
+        //TODO:Provide fynctionality for repository registration
 
     }
 }

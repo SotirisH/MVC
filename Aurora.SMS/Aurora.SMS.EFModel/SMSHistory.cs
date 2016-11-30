@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aurora.Core.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Aurora.SMS.EFModel
         Delivered,
         Error
     }
-    public class SMSHistory
+    public class SMSHistory:EntityBase
     {
         /// <summary>
         /// The id is long because we expect huge number of messages to be sent over the years
@@ -35,13 +36,13 @@ namespace Aurora.SMS.EFModel
         
         
         /// <summary>
-        /// The identity of the message that has been assinged by the SMS provider
+        /// The identity that has been given by the SMS provider to the SMS 
         /// </summary>
         public string ProviderMsgId { get; set; }
         public string ProviderFeedback { get; set; }
         public DateTime ProviderFeedBackDateTime { get; set; }
 
-        public  int ProviderId { get; set; }
+        public  string ProviderName { get; set; }
         public Provider Provider { get; set; }
 
         public int TemplateId { get; set; }
