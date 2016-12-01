@@ -14,9 +14,17 @@ using System.Data.Common;
 
 namespace Aurora.SMS.Service.Tests
 {
+
+
     [TestClass()]
     public class SMSServicesTests
     {
+        [AssemblyInitialize()]
+        public static void AssemblyInit(TestContext context)
+        {
+            Effort.Provider.EffortProviderConfiguration.RegisterProvider();
+        }
+
         [TestMethod()]
         public void ConstructSMSMessagesTest()
         {
@@ -137,7 +145,6 @@ namespace Aurora.SMS.Service.Tests
         [TestMethod()]
         public void SendBulkSMSInMemoryTest()
         {
-
             http://techbrij.com/unit-testing-asp-net-mvc-controller-service
 
             var faker = new Bogus.Faker();

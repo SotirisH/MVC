@@ -50,7 +50,7 @@ namespace Aurora.SMS.Providers
         }
 
 
-        private static HttpClient client = new HttpClient();
+        private  HttpClient client = new HttpClient();
 
         private readonly string _userName,_password;
 
