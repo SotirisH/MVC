@@ -32,3 +32,4 @@ https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices
 
 ##Notes
 - Calling a post method using HttpClient, a strange 404 occured. See my remarks at Aurora.SMS.FakeProvider.Controllers.TestPost
+- [Generic Repository and Unit of Work Pattern, Entity Framework, Unit Testing, Autofac IoC Container and ASP.NET MVC](http://techbrij.com/unit-testing-asp-net-mvc-controller-service)
