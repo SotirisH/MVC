@@ -29,3 +29,6 @@ https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices
 - Basic writing and formatting syntax for [GitHub](https://help.github.com/articles/basic-writing-and-formatting-syntax/)
 - [Calling a Web API From a .NET Client (C#)](https://www.asp.net/web-api/overview/advanced/calling-a-web-api-from-a-net-client)
 - [Create ForeignKey using fluent API on Property](http://www.entityframeworktutorial.net/code-first/configure-one-to-many-relationship-in-code-first.aspx)
+
+##Notes
+- Calling a post method using HttpClient, a strange 404 occured. See my remarks at Aurora.SMS.FakeProvider.Controllers.TestPost
