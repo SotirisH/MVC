@@ -31,7 +31,7 @@ namespace Aurora.SMS.Service.Tests
             var mockTemplateFieldSet = EFHelper.GetQueryableMockDbSet(FixtureGenerator.CreateTemplateFields());
             mockContext.Setup(c => c.TemplateFields).Returns(mockTemplateFieldSet.Object);
             mockContext.Setup(m => m.Set<TemplateField>()).Returns(mockTemplateFieldSet.Object);
-            
+
 
 
             // Set the template
@@ -45,11 +45,11 @@ namespace Aurora.SMS.Service.Tests
                             for the plate:{PlateNumber} has been issued. The amounts are:
                             Gross:{GrossAmount}, Tax:{TaxAmount}, net:{NetAmount}.
                             A hardcopy will be delivered at {Address} , {ZipCode}";
-           
+
             var templateList = new List<Template>() { template };
             var mockTemplateSet = EFHelper.GetQueryableMockDbSet(templateList);
             // I have to use object[]
-            mockTemplateSet.Setup(m => m.Find(It.IsAny<object[]>())).Returns<object[]>(ids => templateList.FirstOrDefault(d => d.Id==(int)ids[0]));
+            mockTemplateSet.Setup(m => m.Find(It.IsAny<object[]>())).Returns<object[]>(ids => templateList.FirstOrDefault(d => d.Id == (int)ids[0]));
 
             //I need to set the Set<Template> Template  
             // because the line dbSet = DbContext.Set<T>(); on the Generic repository fails
@@ -63,9 +63,15 @@ namespace Aurora.SMS.Service.Tests
             IUnitOfWork<SMSDb> UoW = new UnitOfWork<SMSDb>(mockdbFactory.Object, "TestUser");
 
             var target = new SMSServices(UoW);
-            var result =target.ConstructSMSMessages(FixtureGenerator.CreateSMSRecepients(), templateList.First().Id);
+            var result = target.ConstructSMSMessages(FixtureGenerator.CreateSMSRecepients(), templateList.First().Id);
             Assert.IsNotNull(result);
 
+        }
+
+        [TestMethod()]
+        public void SendBulkSMSTest()
+        {
+            Assert.Fail();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Aurora.Core.Data;
+using Aurora.SMS.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,7 @@ using System.Threading.Tasks;
 
 namespace Aurora.SMS.EFModel
 {
-    public enum MessageStatus
-    {
-        Pending,
-        Delivered,
-        Error
-    }
+
     public class SMSHistory:EntityBase
     {
         /// <summary>
@@ -41,7 +37,6 @@ namespace Aurora.SMS.EFModel
         public string ProviderMsgId { get; set; }
         public string ProviderFeedback { get; set; }
         public DateTime ProviderFeedBackDateTime { get; set; }
-
         public  string ProviderName { get; set; }
         public Provider Provider { get; set; }
 

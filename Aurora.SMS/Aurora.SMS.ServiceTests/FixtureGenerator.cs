@@ -19,7 +19,7 @@ namespace Aurora.SMS.ServiceTests
             {
                 Message = faker.Lorem.Sentence(),
                 MobileNumber = faker.Phone.PhoneNumber(),
-                ProviderId = faker.Random.UShort(max: 10),
+                ProviderName = faker.Lorem.Word(),
                 ProviderFeedback = faker.Lorem.Sentence(),
                 TemplateId = templateId
             };

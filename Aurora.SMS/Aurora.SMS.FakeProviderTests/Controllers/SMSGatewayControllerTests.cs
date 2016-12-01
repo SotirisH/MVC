@@ -29,7 +29,15 @@ namespace Aurora.SMS.FakeProvider.Controllers.Tests
             for (var i = 0; i < 100; i++)
             {
                 var faker = new Bogus.Faker();
-                var httpResult = target.SendSMS(faker.Internet.UserName(), "Pass", faker.Lorem.Sentence(), faker.Phone.PhoneNumber(), faker.Random.UInt().ToString());
+
+                var httpResult = target.SendSMS(new Models.SmsRequest()
+                {
+                    username = faker.Internet.UserName(),
+                    password = "Pass",
+                    message = faker.Lorem.Sentence(),
+                    mobileNumber = faker.Phone.PhoneNumber(),
+                    messageExternalId = faker.Random.UInt().ToString()
+                });
                 
                 results.Add(httpResult);
             }

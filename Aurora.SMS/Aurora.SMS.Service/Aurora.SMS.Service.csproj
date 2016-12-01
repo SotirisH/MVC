@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Aurora.SMS.Service</RootNamespace>
     <AssemblyName>Aurora.SMS.Service</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -79,6 +80,10 @@
     <ProjectReference Include="..\..\Aurora.Insurance\Aurora.Insurance.Services\Aurora.Insurance.Services.csproj">
       <Project>{095927c3-192a-43e4-8e62-55cff50c9d57}</Project>
       <Name>Aurora.Insurance.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Aurora.SMS.Common\Aurora.SMS.Common.csproj">
+      <Project>{D0F7B5F4-923A-4D94-8522-4C2AAD1A25AE}</Project>
+      <Name>Aurora.SMS.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Aurora.SMS.EFModel\Aurora.SMS.EFModel.csproj">
       <Project>{acc24b1f-b706-4b15-95ca-8639e3956e53}</Project>

@@ -42,7 +42,11 @@ namespace Aurora.SMS.Service.Data
             Property(p => p.MobileNumber).IsRequired().HasMaxLength(50);
             Property(p => p.ProviderMsgId).HasMaxLength(255);
             Property(p => p.TemplateId).IsRequired();
-            Property(p => p.ProviderId).IsRequired();
+            // Create ForeignKey using fluent API on Property 
+            // http://www.entityframeworktutorial.net/code-first/configure-one-to-many-relationship-in-code-first.aspx 
+            HasRequired(p => p.Provider)
+                .WithMany(s => s.SMSHistory)
+                .HasForeignKey(s => s.ProviderName);
         }
     }
 

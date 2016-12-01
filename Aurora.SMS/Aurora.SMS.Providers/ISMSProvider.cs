@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Aurora.SMS.Providers
 {
     /// <summary>
-    /// The base Interaface for all clinet provider implementations
+    /// The base Interaface for all client provider implementations
     /// </summary>
     public interface ISMSClientProvider
     {
@@ -20,12 +20,13 @@ namespace Aurora.SMS.Providers
         /// <param name="smsMessage"></param>
         /// <param name="sender"></param>
         /// <param name="scheduledDate"></param>
-        /// <returns></returns>
-        Task<SMSResult> SendSMSAsync(int smsMessageId,
+        /// <returns>A generic result. Each concrete implemenatation of this
+        /// interface is responsible to construct a proper message</returns>
+        Task<SMSResult> SendSMSAsync(long smsMessageId,
                             string mobileNumber,
                             string smsMessage,
                             string sender,
                             DateTime?  scheduledDate);
-        Task<string> GetAvailableCredits();
+        Task<string> GetAvailableCreditsAsync();
     }
 }

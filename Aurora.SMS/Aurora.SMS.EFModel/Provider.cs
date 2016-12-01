@@ -21,5 +21,6 @@ namespace Aurora.SMS.EFModel
         public string UserName { get; set; }
         public string PassWord { get; set; }
         public bool SupportsScheduleMessage { get; set; }
+        public virtual ICollection<SMSHistory> SMSHistory { get; set; }
     }
 }

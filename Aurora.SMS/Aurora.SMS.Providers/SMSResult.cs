@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Aurora.SMS.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-/// <summary>
-/// Te models are kept in a seperate project 
-/// so they can been shared easily with the HttpClient projects
-/// </summary>
 namespace Aurora.SMS.Providers
+
 {
+    /// <summary>
+    /// Represents the transformed message that is returned by the SendSMSAsync
+    /// </summary>
     public class SMSResult
     {
         /// <summary>
@@ -21,11 +22,12 @@ namespace Aurora.SMS.Providers
         /// </summary>
         public string ReturnedMessage { get; set; }
         public DateTime TimeStamp { get; set; }
-        public string MessageStatus { get; set; }
+        public MessageStatus MessageStatus { get; set; }
         /// <summary>
         /// The external ID that is passed by the client and returned back to it
         /// in order to make easy to track the message and correlate it with the Guid ID
         /// </summary>
         public string ExternalId { get; set; }
     }
+ 
 }

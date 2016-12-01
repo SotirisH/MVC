@@ -1,5 +1,6 @@
 ﻿using Aurora.Core.Data;
 using Aurora.Insurance.Services.DTO;
+using Aurora.SMS.Providers;
 using Aurora.SMS.Service.Data;
 using System;
 using System.Collections.Generic;
@@ -37,8 +38,8 @@ namespace Aurora.SMS.Service
         /// </summary>
         /// <param name="messagesToSent"></param>
         /// <param name="providerId"></param>
-        /// <returns></returns>
-        public Guid SendSMS(IEnumerable<DTO.SMSMessageDTO> messagesToSent, string providerName)
+        /// <returns>Returns the session ID</returns>
+        public Guid SendBulkSMS(IEnumerable<DTO.SMSMessageDTO> messagesToSent, string providerName)
         {
             // get the provider data
             EFModel.Provider provider = _providerRepository.GetById(providerName, true);
@@ -53,18 +54,23 @@ namespace Aurora.SMS.Service
                 smsHistory.PersonId = msg.PersonId;
                 smsHistory.ProviderName = providerName;
                 smsHistory.TemplateId = msg.TemplateId;
-                smsHistory.Status = EFModel.MessageStatus.Pending;
+                smsHistory.Status = Common.MessageStatus.Pending;
                 smsHistory.SessionId = sessionId;
                 smsHistory.SessionName = providerName + "|" + DateTime.Now;
                 _smsHistoryRepository.Add(smsHistory);
             }
             _unitOfWork.Commit();
 
-            var smsClient = Providers.ClientProviderFactory.CreateClient(providerName, provider.UserName, provider.PassWord);
+            List<Task> serverRequests = new List<Task>();
+            var smsProviderProxy = ClientProviderFactory.CreateClient(providerName, provider.UserName, provider.PassWord);
+                  
             foreach (var historysms in _unitOfWork.DbContext.SMSHistoryRecords)
             {
-                var result = await smsClient.SendSMS();
+                serverRequests.Add( SendSMSToProvider(smsProviderProxy, provider, historysms));
             }
+            Task.WaitAll(serverRequests.ToArray());
+            _unitOfWork.Commit();
+            return sessionId;
         }
 
 
@@ -115,6 +121,39 @@ namespace Aurora.SMS.Service
                                             EFModel.TemplateField templateField)
         {
             return  string.Format("{0:" + (templateField.DataFormat ?? string.Empty) + "}", recepient.GetType().GetProperty(templateField.Name).GetValue(recepient, null));
+        }
+
+
+        /// <summary>
+        /// Sends a message to the SMS gateway
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="smsHistory"></param>
+        /// <returns></returns>
+        private async Task SendSMSToProvider(ISMSClientProvider smsClient,
+                                                    EFModel.Provider provider,
+                                                    EFModel.SMSHistory smsHistory)
+        {
+            // send the sms to the provider and return the control to the 
+            var result = await smsClient.SendSMSAsync(smsHistory.Id,
+                                                    smsHistory.MobileNumber,
+                                                    smsHistory.Message,
+                                                    null,
+                                                    null);
+            smsHistory.ProviderFeedback = result.ReturnedMessage;
+            smsHistory.ProviderFeedBackDateTime = result.TimeStamp;
+            smsHistory.ProviderMsgId = result.ProviderId;
+            if (result.MessageStatus == Common.MessageStatus.Delivered)
+            {
+                smsHistory.Status = Common.MessageStatus.Delivered;
+            }
+            else
+            {
+                smsHistory.Status = Common.MessageStatus.Error;
+            }
+
+            _smsHistoryRepository.Update(smsHistory);
+            return;
         }
     }
 }

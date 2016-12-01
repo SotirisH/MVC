@@ -49,6 +49,24 @@ namespace Aurora.SMS.FakeProvider.Controllers
         }
 
         /// <summary>
+        /// Test method for post
+        /// </summary>
+        /// <param name="echo"></param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// After many, many, many hours i discovered this
+        /// http://stackoverflow.com/questions/24625303/why-do-we-have-to-specify-frombody-and-fromuri-in-asp-net-web-api
+        /// In few words: without [FromBody]
+        /// If you use HttpClient.PostAsync the method expects the parameters to be passed from URI
+        /// </remarks>
+        [HttpPost]
+        public string TestPost([FromBody] string echo)
+        {
+            return  echo + " Hello";
+        }
+
+        /// <summary>
         /// Sends an SMS to a mobile phone
         /// </summary>
         /// <param name="username">Login user name</param>
@@ -57,16 +75,13 @@ namespace Aurora.SMS.FakeProvider.Controllers
         /// <param name="mobileNumber">The mobile number that will be sent</param>
         /// <param name="messageExternalId">The external ID will be returned with the result. It is used to track the incoming message</param>
         /// <returns></returns>
-        [HttpGet]
-        public SMSResult SendSMS(string username,
-                            string password,
-                            string message,
-                            string mobileNumber,
-                            string messageExternalId)
+          
+        [HttpPost]
+        public SMSResult SendSMS(Models.SmsRequest smsRequest)
         {
-            
+            //TODO: use HttpResponseMessage for returning    
             Bogus.Faker faker = new Bogus.Faker();
-            SMSResult result = new SMSResult() { Id=Guid.NewGuid(), ExternalId= messageExternalId };
+            SMSResult result = new SMSResult() { Id=Guid.NewGuid(), ExternalId= smsRequest.messageExternalId };
             //try
             //{
                 ApplyDelay();
@@ -113,7 +128,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
             //    return InternalServerError(ex);
             //}
         }
-
+        
         /// <summary>
         /// This method simulates resending an SMS message with a given Id
         /// </summary>
@@ -122,43 +137,30 @@ namespace Aurora.SMS.FakeProvider.Controllers
         /// <param name="messageId"></param>
         /// <param name="messageExternalId"></param>
         /// <returns></returns>
-        [HttpGet]
-        public SMSResult ReSendSMS(string username,
-                            string password,
-                            Guid messageId,
-                            string messageExternalId)
+        [HttpPost]
+        public SMSResult ReSendSMS(Models.SmsRequest smsRequest)
         {
             // Suppose the SMS message is retrieved from the providers DB
 
-            return SendSMS(username,
-                password,
-                "Retrieved OriginalText",
-                "Retrieved MobileNumber",
-                messageExternalId);
+            return SendSMS(smsRequest);
         }
+
+        [HttpGet]
+        public SMSResult GetMessageStatus(Guid smsId)
+        {
+            ApplyDelay();
+            throw new NotImplementedException(); 
+        }
+      
+
         [HttpGet]
         public int GetAvailableCredits(string username,
-                    string password)
+                 string password)
         {
             ApplyDelay();
             // Remove one credit from the application variable
             return (int)(System.Web.HttpContext.Current.Application["Credits"]);
         }
-
-        [HttpGet]
-        public SMSResult GetMessageStatus(string username,
-                                string password, 
-                                Guid messageId,
-                                string messageExternalId)
-        {
-            ApplyDelay();
-            return SendSMS(username,
-                         password,
-                         "Retrieved OriginalText",
-                         "Retrieved MobileNumber",
-                         messageExternalId);
-        }
-
     }
 
 
