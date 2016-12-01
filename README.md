@@ -21,9 +21,9 @@ https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices
 - How to create Unit Of work
 - How to create a generic repository
 - How to create unit tests for
--- WebAPi
--- MVC Controlers
--- EF
+  - WebAPi
+  - MVC Controlers
+  - EF
 
 ##References
 -
