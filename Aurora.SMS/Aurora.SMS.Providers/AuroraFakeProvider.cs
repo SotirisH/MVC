@@ -103,6 +103,15 @@ namespace Aurora.SMS.Providers
                 var responseBody = await response.Content.ReadAsStringAsync();
                 // Because each provider could return a different response object the Deserialization needs to be manualy
                 var result= JsonConvert.DeserializeObject<AuroraFakeSMSResult>(responseBody);
+                return new SMSResult()
+                {
+                    ExternalId = result.ExternalId,
+                    MessageStatus=(result.Status==AuroraFakeMessageStatus.OK?Common.MessageStatus.Delivered:Common.MessageStatus.Error),
+                    ProviderId=result.Id.ToString(),
+                    ReturnedMessage=result.ReturnedMessage,
+                    TimeStamp=result.TimeStamp
+                };
+
             }
             return null;
 

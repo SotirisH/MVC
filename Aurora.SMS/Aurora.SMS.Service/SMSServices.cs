@@ -62,6 +62,7 @@ namespace Aurora.SMS.Service
             _unitOfWork.Commit();
 
             List<Task> serverRequests = new List<Task>();
+            // Need to abstract the ClientProviderFactory
             var smsProviderProxy = ClientProviderFactory.CreateClient(providerName, provider.UserName, provider.PassWord);
                   
             foreach (var historysms in _unitOfWork.DbContext.SMSHistoryRecords)
@@ -152,7 +153,7 @@ namespace Aurora.SMS.Service
                 smsHistory.Status = Common.MessageStatus.Error;
             }
 
-            _smsHistoryRepository.Update(smsHistory);
+           // _smsHistoryRepository.Update(smsHistory);
             return;
         }
     }

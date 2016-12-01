@@ -112,7 +112,8 @@ namespace Aurora.SMS.FakeProvider.Controllers
                         result.ReturnedMessage = "This message is too long!";
                         break;
                     case MessageStatus.NotEnoughCredits:
-                        break;
+                        result.ReturnedMessage= "NotEnoughCredits";
+                    break;
                     case MessageStatus.OK:
                         DecreaseCredit();
                         break;

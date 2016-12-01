@@ -1,6 +1,7 @@
 ﻿using Aurora.Core.Data;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,14 @@ namespace Aurora.SMS.Service.Data
         {
 
         }
+        /// <summary>
+        /// Constructor for creating memory dB
+        /// </summary>
+        /// <param name="connection"></param>
+        public SMSDb(DbConnection connection):base(connection,true)
+        {
 
+        }
         public virtual DbSet<EFModel.Provider> Providers { get; set; }
         public virtual DbSet<EFModel.SMSHistory> SMSHistoryRecords { get; set; }
         public virtual DbSet<EFModel.Template> Templates { get; set; }

@@ -25,8 +25,8 @@ namespace Aurora.SMS.Service.Data
     {
         public ProviderConfiguration()
         {
-            Property(p => p.Name).IsRequired().HasMaxLength(50)
-                    .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+            HasKey(p => p.Name);
+            Property(p => p.Name).IsRequired().HasMaxLength(50);
             Property(p => p.Url).IsRequired().HasMaxLength(255);
             Property(p => p.UserName).HasMaxLength(50);
             Property(p => p.PassWord).HasMaxLength(50);
@@ -38,7 +38,7 @@ namespace Aurora.SMS.Service.Data
         public SMSHistoryConfiguration()
         {
             Property(p => p.SessionName).IsRequired().HasMaxLength(255);
-            Property(p => p.Message).IsRequired().HasMaxLength(255);
+            Property(p => p.Message).IsRequired().HasMaxLength(1000);
             Property(p => p.MobileNumber).IsRequired().HasMaxLength(50);
             Property(p => p.ProviderMsgId).HasMaxLength(255);
             Property(p => p.TemplateId).IsRequired();
@@ -57,7 +57,7 @@ namespace Aurora.SMS.Service.Data
             Property(p => p.Name).IsRequired().HasMaxLength(50)
                    .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
             Property(p => p.Description).HasMaxLength(255);
-            Property(p => p.Text).IsRequired().HasMaxLength(255);
+            Property(p => p.Text).IsRequired().HasMaxLength(1000);
         }
     }
 

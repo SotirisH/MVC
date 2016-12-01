@@ -1,6 +1,7 @@
 ﻿using Aurora.Core.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Aurora.SMS.EFModel
     /// </summary>
     public class Provider:EntityBase
     {
+        [Key]
         public string Name { get; set; }
         /// <summary>
         /// Url that points to the SMS GateWay
