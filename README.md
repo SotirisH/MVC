@@ -26,4 +26,4 @@ https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices
   - EF
 
 ##References
--
+- Basic writing and formatting syntax for [GitHub](https://help.github.com/articles/basic-writing-and-formatting-syntax/)
