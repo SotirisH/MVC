@@ -8,16 +8,18 @@ https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices
 ##Technologies & frameworks used:
 - MVC 5
 - Web API
-- EF
+- EF 6
 - Bogus
 - Automapper
 - Moq
-
-
+- Fluent Validation
+- Memory EF
 
 
 ##Architecture & concepts
-- Best practices for buiinding an MVC solution
+- Best practices for building an MVC solution
+- DTOs: when, why.
+- ViewModels: when, why.
 - How to create Unit Of work
 - How to create a generic repository
 - How to create unit tests for
@@ -29,6 +31,7 @@ https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices
 - Basic writing and formatting syntax for [GitHub](https://help.github.com/articles/basic-writing-and-formatting-syntax/)
 - [Calling a Web API From a .NET Client (C#)](https://www.asp.net/web-api/overview/advanced/calling-a-web-api-from-a-net-client)
 - [Create ForeignKey using fluent API on Property](http://www.entityframeworktutorial.net/code-first/configure-one-to-many-relationship-in-code-first.aspx)
+- [Web API powerful Custom Model Validation with FluentValidation](https://chsakell.com/2015/01/17/web-api-powerful-custom-model-validation-with-fluentvalidation/)
 
 ##Notes
 - Calling a post method using HttpClient, a strange 404 occured. See my remarks at Aurora.SMS.FakeProvider.Controllers.TestPost
