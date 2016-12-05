@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Aurora.SMS.EFModel.TemplateField>
+
+@{
+    Layout = null;
+}
+
+@{
+    var groups = Model.GroupBy(p => p.GroupName).OrderBy(p => p.Key);
+    foreach (var groupItem in groups)
+    {
+        // Create a panel
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">@groupItem.Key</h3>
+            </div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <!--Panel content--> 
+                    @foreach (var templateField in groupItem)
+                    {
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading small">@templateField.Name</h4>
+                            <p class="list-group-item-text small">@templateField.Description</p>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}

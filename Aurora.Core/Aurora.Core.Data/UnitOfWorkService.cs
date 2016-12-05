@@ -26,5 +26,11 @@ namespace Aurora.Core.Data
             }
             _unitOfWork = unitOfWork;
         }
+
+        public void Save()
+        {
+            _unitOfWork.Commit();
+        }
+
     }
 }

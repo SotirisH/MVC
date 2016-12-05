@@ -62,7 +62,7 @@ namespace Aurora.Insurance.Services
                 {
                     finalExpression = finalExpression.And(c => c.Company.Id == criteria.CompanyId);
                 }
-                // TODO: Refactor date ranges
+                // TODO: Refactor to use date ranges
                 if (criteria.ExpireDateFrom.HasValue)
                 {
                     finalExpression = finalExpression.And(c => c.ExpireDate >= criteria.ExpireDateFrom);

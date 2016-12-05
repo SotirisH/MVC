@@ -6,18 +6,18 @@ namespace Aurora.SMS.Service.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Data.SMSDb>
+    internal sealed class Configuration : DbMigrationsConfiguration<Aurora.SMS.Service.Data.SMSDb>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Data.SMSDb context)
+        protected override void Seed(Aurora.SMS.Service.Data.SMSDb context)
         {
-
+           
             InitTemplateField().ForEach(x => context.TemplateFields.AddOrUpdate(x));
-
+            context.SaveChanges();
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -31,7 +31,6 @@ namespace Aurora.SMS.Service.Migrations
             //    );
             //
         }
-
 
         public List<EFModel.TemplateField> InitTemplateField()
         {
@@ -93,7 +92,7 @@ namespace Aurora.SMS.Service.Migrations
                     DataFormat="0.00"
                 },
 
-                
+
                 new EFModel.TemplateField
                 {
                     GroupName="Contract",
@@ -106,7 +105,7 @@ namespace Aurora.SMS.Service.Migrations
                     Name="CanceledDate",
                     Description="The CanceledDate",
                     DataFormat="dd/MM/yyyy"
-                },                
+                },
                 new EFModel.TemplateField
                 {
                     GroupName="Contract",
@@ -158,6 +157,5 @@ namespace Aurora.SMS.Service.Migrations
                 }
             };
         }
-
     }
 }

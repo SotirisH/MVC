@@ -11,7 +11,7 @@ namespace Aurora.SMS.Service
 {
     public interface ITemplateServices
     {
-        void Update(TemplateDTO template);
+        void Update(EFModel.Template template);
         /// <summary>
         /// Checks if the template has references to the SMS history table
         /// </summary>
@@ -19,23 +19,26 @@ namespace Aurora.SMS.Service
         /// <returns></returns>
         bool IsTemplateUsed(int templateId);
         void DeleteTemplate(int templateId);
-        void CreateTemplate(TemplateDTO template);
+        void CreateTemplate(EFModel.Template template);
+        IEnumerable<EFModel.Template> GetAll();
+        EFModel.Template GetById(int id);
     }
 
     public class TemplateServices:  UnitOfWorkService<SMSDb>, ITemplateServices
     {
         private readonly GenericRepository<EFModel.Template, SMSDb> _templateRepository;
-
+        
         public TemplateServices(IUnitOfWork<SMSDb> unitOfWork):base(unitOfWork)
         {
             _templateRepository = new GenericRepository<EFModel.Template, SMSDb>(_unitOfWork.DbFactory);
-            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap< TemplateDTO, EFModel.Template>());
+            
+        
         }
 
-        public void CreateTemplate(TemplateDTO template)
+        public void CreateTemplate(EFModel.Template template)
         {
-            var efTemplate = AutoMapper.Mapper.Map<EFModel.Template>(template);
-            _templateRepository.Add(efTemplate);
+            _templateRepository.Add(template);
+            _unitOfWork.Commit();
         }
 
         public void DeleteTemplate(int templateId)
@@ -43,9 +46,14 @@ namespace Aurora.SMS.Service
             _templateRepository.Delete(templateId);
         }
 
-        public IEnumerable<TemplateFieldDTO> GetAllTemplateFields()
+        public IEnumerable<EFModel.Template> GetAll()
         {
-            throw new NotImplementedException();
+            return _templateRepository.GetAll();
+        }
+
+        public EFModel.Template GetById(int id)
+        {
+            return  _templateRepository.GetById(id);
         }
 
         public bool IsTemplateUsed(int templateId)
@@ -58,19 +66,17 @@ namespace Aurora.SMS.Service
         /// modifies template has a reference to the SMSHostory
         /// </summary>
         /// <param name="template"></param>
-        public void Update(TemplateDTO template)
+        public void Update(EFModel.Template template)
         {
-           
-            var efTemplate = AutoMapper.Mapper.Map<EFModel.Template>(template);
             // check if there is any reference
             if (DbContext.SMSHistoryRecords.Any(h => h.TemplateId == template.Id))
             {
-                efTemplate.Id = 0;
-                _templateRepository.Add(efTemplate);
+                template.Id = 0;
+                _templateRepository.Add(template);
             }
             else
             {
-                _templateRepository.Update(efTemplate);
+                _templateRepository.Update(template);
             }
         }
     }

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Aurora.SMS.Service.DTO.SMSMessageDTO>
+
+<h2>Preview SMS</h2>
+@Html.ActionLink("Send SMS", "BulkSmsResult")
+
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th>PersonId</th>
+                    <th>ContractId</th>
+                    <th>MobileNumber</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var previewMsg in Model)
+                {
+                    <tr>
+                        <td>
+                            @previewMsg.PersonId
+                        </td>
+                        <td>
+                            @previewMsg.ContractId
+                        </td>
+                        <td>
+                            @previewMsg.MobileNumber
+                        </td>
+                        <td>
+                            @previewMsg.Message
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>

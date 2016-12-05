@@ -1,0 +1,23 @@
+﻿@model Aurora.SMS.Web.Models.SelectedTemplateViewModel
+
+@{
+    ViewBag.Title = "SelectTemplate";
+}
+
+<h2>SelectTemplate</h2>
+<div class="container">
+    @using (@Html.BeginForm())
+    {
+
+        <div class="col-md-6">
+            <h4>Available Templates</h4> <button type="submit" class="btn btn-primary" value="Search">Preview</button>
+            <hr />
+            @Html.DropDownListFor(p => p.SelectedTemplateId, new SelectList(Model.Templates, "Id", "Name"), new { @id = "TemplatesListBox", @size = 10 })
+        </div>
+    }
+    <div class="col-md-6">
+        <h4>Template Text</h4>
+        <hr />
+
+    </div>
+</div>

@@ -1,0 +1,9 @@
+﻿<ul class="nav navbar-nav navbar-right">
+    <li><p class="navbar-text">Provider:@ViewBag.SmsGateWayName</p></li>
+    <li><p class="navbar-text">Credits:<span id="spanCredits">?</span></p></li>
+    <li>
+        <p class="navbar-btn">
+            @Html.ActionLink("Change", "Change", "SmsGateWay", null, new { @class = "btn btn-default" })
+        </p>
+    </li>
+</ul>

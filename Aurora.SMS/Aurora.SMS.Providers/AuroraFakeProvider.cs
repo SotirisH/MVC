@@ -97,7 +97,8 @@ namespace Aurora.SMS.Providers
 
             //var content = new StringContent(JsonConvert.SerializeObject(param), Encoding.UTF8, "application/json");
             //var r = client.PostAsync(path, content).Result;
-            HttpResponseMessage response = await client.PostAsJsonAsync(path, param);
+            //http://stackoverflow.com/questions/10343632/httpclient-getasync-never-returns-when-using-await-async
+            HttpResponseMessage response = await client.PostAsJsonAsync(path, param).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
                 var responseBody = await response.Content.ReadAsStringAsync();

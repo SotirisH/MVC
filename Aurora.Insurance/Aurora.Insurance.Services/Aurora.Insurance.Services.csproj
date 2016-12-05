@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompanyServices.cs" />
     <Compile Include="Configuration\DbInit.cs" />
     <Compile Include="ContractServices.cs" />
     <Compile Include="DTO\ContractDTO.cs" />

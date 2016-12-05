@@ -39,7 +39,7 @@ namespace Aurora.SMS.Service.Data
         {
             Property(p => p.SessionName).IsRequired().HasMaxLength(255);
             Property(p => p.Message).IsRequired().HasMaxLength(1000);
-            Property(p => p.MobileNumber).IsRequired().HasMaxLength(50);
+            Property(p => p.MobileNumber).HasMaxLength(50);
             Property(p => p.ProviderMsgId).HasMaxLength(255);
             Property(p => p.TemplateId).IsRequired();
             // Create ForeignKey using fluent API on Property 

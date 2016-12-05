@@ -8,17 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Aurora.SMS.EFModel;
 
 namespace Aurora.SMS.Service
 {
     public interface ISMSServices
     {
-
+        Guid SendBulkSMS(IEnumerable<DTO.SMSMessageDTO> messagesToSent, string providerName);
+        IEnumerable<DTO.SMSMessageDTO> ConstructSMSMessages(IEnumerable<ContractDTO> recepients, int templateId);
+        string GetAvailableCredits(string smsGateWayName);
+        IEnumerable<EFModel.Provider> GetAllProviders();
     }
 
 
-    public class SMSServices : UnitOfWorkService<SMSDb>
+    public class SMSServices : UnitOfWorkService<SMSDb>, ISMSServices
     {
+        // TODO:Create a generic repository
         private readonly GenericRepository<EFModel.Template, SMSDb> _templateRepository;
         private readonly GenericRepository<EFModel.TemplateField, SMSDb> _templatefieldsRepository;
         private readonly GenericRepository<EFModel.Provider, SMSDb> _providerRepository;
@@ -57,15 +62,22 @@ namespace Aurora.SMS.Service
                 smsHistory.Status = Common.MessageStatus.Pending;
                 smsHistory.SessionId = sessionId;
                 smsHistory.SessionName = providerName + "|" + DateTime.Now;
+                smsHistory.SendDateTime = DateTime.Now;
+                if (string.IsNullOrWhiteSpace(msg.MobileNumber))
+                {
+                    smsHistory.ProviderFeedback = "The MobileNumber is not present!";
+                }
+                
                 _smsHistoryRepository.Add(smsHistory);
             }
             _unitOfWork.Commit();
 
             List<Task> serverRequests = new List<Task>();
-            // Need to abstract the ClientProviderFactory
+            // TODO:Need to abstract the ClientProviderFactory
             var smsProviderProxy = ClientProviderFactory.CreateClient(providerName, provider.UserName, provider.PassWord);
-                  
-            foreach (var historysms in _unitOfWork.DbContext.SMSHistoryRecords)
+            //LINQ to Entities does not recognize the method 'Boolean IsNullOrWhiteSpace(System.String)'                  
+            //http://stackoverflow.com/questions/9606979/string-isnullorwhitespace-in-linq-expression
+            foreach (var historysms in _unitOfWork.DbContext.SMSHistoryRecords.Where(m=> (m.SessionId== sessionId) && (m.MobileNumber!=null) && m.MobileNumber.Trim()!=string.Empty).ToArray())
             {
                 serverRequests.Add( SendSMSToProvider(smsProviderProxy, provider, historysms));
             }
@@ -140,7 +152,7 @@ namespace Aurora.SMS.Service
                                                     smsHistory.MobileNumber,
                                                     smsHistory.Message,
                                                     null,
-                                                    null);
+                                                    null).ConfigureAwait(false);
             smsHistory.ProviderFeedback = result.ReturnedMessage;
             smsHistory.ProviderFeedBackDateTime = result.TimeStamp;
             smsHistory.ProviderMsgId = result.ProviderId;
@@ -155,6 +167,20 @@ namespace Aurora.SMS.Service
 
            // _smsHistoryRepository.Update(smsHistory);
             return;
+        }
+
+        public string GetAvailableCredits(string smsGateWayName)
+        {
+            EFModel.Provider provider = _providerRepository.GetById(smsGateWayName, true);
+            List<Task> serverRequests = new List<Task>();
+            // TODO:Need to abstract the ClientProviderFactory
+            var smsProviderProxy = ClientProviderFactory.CreateClient(smsGateWayName, provider.UserName, provider.PassWord);
+            return smsProviderProxy.GetAvailableCreditsAsync().Result;
+        }
+
+        public IEnumerable<Provider> GetAllProviders()
+        {
+            return _providerRepository.GetAll();
         }
     }
 }

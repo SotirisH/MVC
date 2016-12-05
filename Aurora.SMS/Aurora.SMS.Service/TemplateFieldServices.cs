@@ -15,7 +15,7 @@ namespace Aurora.SMS.Service
         /// Return all fileds with a specific order
         /// </summary>
         /// <returns></returns>
-        IEnumerable<TemplateFieldDTO> GetAllTemplateFields();
+        IEnumerable<EFModel.TemplateField> GetAllTemplateFields();
     }
 
     public class TemplateFieldServices : UnitOfWorkService<SMSDb>, ITemplateFieldServices
@@ -26,12 +26,11 @@ namespace Aurora.SMS.Service
         public TemplateFieldServices(IUnitOfWork<SMSDb> unitOfWork):base(unitOfWork)
         {
             _templateFieldRepository = new GenericRepository<EFModel.TemplateField, SMSDb>(_unitOfWork.DbFactory);
-            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<TemplateFieldDTO, EFModel.TemplateField>());
         }
 
-        public IEnumerable<TemplateFieldDTO> GetAllTemplateFields()
+        public IEnumerable<EFModel.TemplateField> GetAllTemplateFields()
         {
-            return AutoMapper.Mapper.Map <IEnumerable<TemplateFieldDTO>> (_templateFieldRepository.GetAsQueryable().OrderBy(x => x.GroupName).OrderBy(x => x.Name).ToArray());
+            return _templateFieldRepository.GetAsQueryable().OrderBy(x => x.GroupName).OrderBy(x => x.Name).ToArray();
         }
     }
 }

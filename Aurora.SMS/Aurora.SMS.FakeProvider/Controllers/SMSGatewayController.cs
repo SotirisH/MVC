@@ -33,7 +33,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
 
         public virtual void ApplyDelay()
         {
-            Thread.Sleep(1500);
+           Thread.Sleep(500);
         }
 
         /// <summary>
@@ -121,6 +121,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
                         result.ReturnedMessage = "Pending....";
                         break;
                 }
+                result.TimeStamp = DateTime.Now;
                 return result;
             //}
             //catch (Exception ex)

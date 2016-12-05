@@ -1,0 +1,74 @@
+﻿@model Aurora.SMS.Web.Models.CustomerSelectionViewModel
+
+<h2>Customer selection</h2>
+<div class="well container" id="divCriteria">
+    @using (@Html.BeginForm())
+    { 
+        <fieldset>
+            <legend>Criteria</legend>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label class="control-label">Company</label>
+                    @Html.DropDownListFor(m => m.Criteria.CompanyId, new SelectList(Model.Companies, "Id", "Description"))
+                </div>
+                <div class="col-md-6 form-group">
+                    <label class="control-label">Contract Number</label>
+                    @Html.EditorFor(m => m.Criteria.ContractNumber)
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="control-label">Issue Date(From)</label>
+                    @Html.EditorFor(m => m.Criteria.IssueDateFrom)
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">Issue Date(To)</label>
+                    @Html.EditorFor(m => m.Criteria.IssueDateTo)
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label">Start Date(From)</label>
+                    @Html.EditorFor(m => m.Criteria.StartDateFrom)
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">Start Date(To)</label>
+                    @Html.EditorFor(m => m.Criteria.StartDateTo)
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label">Expire Date(From)</label>
+                    @Html.EditorFor(m => m.Criteria.ExpireDateFrom)
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">Expire Date(To)</label>
+                    @Html.EditorFor(m => m.Criteria.ExpireDateTo)
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label">Is Canceled</label>
+                    @Html.EditorFor(m => m.Criteria.IsCanceled)
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">Canceled Date</label>
+                    @Html.EditorFor(m => m.Criteria.CanceledDate)
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">Plate Number</label>
+                    @Html.EditorFor(m => m.Criteria.PlateNumber)
+                </div>
+
+                <div class="form-group col-md-6">
+                    <button type="submit" class="btn btn-primary" value="Search">Search</button>
+                </div>
+            </div>
+        </fieldset>
+
+        <h2>Contracts</h2><button type="submit" class="btn btn-primary" value="AdvancedToSelectTemplate" formaction="AdvancedToSelectTemplate">Preview Messages</button>
+        <hr />
+    }
+</div>
+
+
+
+@Html.Partial("_CustomerResult", Model.Contracts)
+

@@ -40,14 +40,15 @@ namespace Aurora.SMS.Service.Tests
             mockContext.Setup(m => m.Set<Template>()).Returns(mockTemplateSet.Object);
             mockContext.Setup(c => c.Templates).Returns(mockTemplateSet.Object);
 
-
+            var mockICurrentUserService = new Mock<ICurrentUserService>();
+            mockICurrentUserService.Setup(p => p.GetCurrentUser()).Returns("TestUser");
             // Mocking up dbFactory
             var mockdbFactory = new Mock<DbFactory<SMSDb>>();
             mockdbFactory.Setup(m => m.Init()).Returns(mockContext.Object);
-            IUnitOfWork<SMSDb> UoW = new UnitOfWork<SMSDb>(mockdbFactory.Object,"TestUser");
+            IUnitOfWork<SMSDb> UoW = new UnitOfWork<SMSDb>(mockdbFactory.Object, mockICurrentUserService.Object);
 
             var target = new TemplateServices(UoW);
-            target.Update(new DTO.TemplateDTO() { Id= mockTemplateId });
+            target.Update(new EFModel.Template() { Id= mockTemplateId });
 
             Assert.IsTrue(mockContext.Object.Templates.Any());
 

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Aurora.SMS.EFModel.Template>
+@{
+    ViewBag.Title = "Manage SMS templates";
+}
+
+<div class="jumbotron">
+    <h1>Templates Management</h1>
+    <p class="h4">Here you can create, modify or delete an SMS template</p>
+    @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-primary btn-lg"})
+</div>
+
+
+
+<h2>Available templates</h2>
+<div class="list-group" style="position:relative">
+    @foreach (var template in Model)
+    {
+        <div >
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@template.Name</h4>
+                <p class="list-group-item-text">@template.Description</p>
+                <div style="position:absolute;top:0;right:0;z-index:100;display:block">
+                    @Html.ActionLink("Edit", "Edit", new { id = template.Id })
+                    @Html.ActionLink("Delete", "Delete", new { id = template.Id })
+                </div>
+            </div>
+        </div>
+    }
+</div>

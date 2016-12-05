@@ -36,7 +36,7 @@ namespace Aurora.SMS.EFModel
         /// </summary>
         public string ProviderMsgId { get; set; }
         public string ProviderFeedback { get; set; }
-        public DateTime ProviderFeedBackDateTime { get; set; }
+        public DateTime? ProviderFeedBackDateTime { get; set; }
         public  string ProviderName { get; set; }
         public Provider Provider { get; set; }
 

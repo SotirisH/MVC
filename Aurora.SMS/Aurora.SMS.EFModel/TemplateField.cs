@@ -10,7 +10,6 @@ namespace Aurora.SMS.EFModel
 {
     public class TemplateField:EntityBase
     {
-        [Key]
         public string Name { get; set; }
         public string Description { get; set; }
         public string GroupName { get; set; }

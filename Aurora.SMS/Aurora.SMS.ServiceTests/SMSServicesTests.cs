@@ -65,11 +65,13 @@ namespace Aurora.SMS.Service.Tests
             mockContext.Setup(m => m.Set<Template>()).Returns(mockTemplateSet.Object);
             mockContext.Setup(c => c.Templates).Returns(mockTemplateSet.Object);
 
+            var mockICurrentUserService = new Mock<ICurrentUserService>();
+            mockICurrentUserService.Setup(p => p.GetCurrentUser()).Returns("TestUser");
 
             // Mocking up dbFactory
             var mockdbFactory = new Mock<DbFactory<SMSDb>>();
             mockdbFactory.Setup(m => m.Init()).Returns(mockContext.Object);
-            IUnitOfWork<SMSDb> UoW = new UnitOfWork<SMSDb>(mockdbFactory.Object, "TestUser");
+            IUnitOfWork<SMSDb> UoW = new UnitOfWork<SMSDb>(mockdbFactory.Object, mockICurrentUserService.Object);
 
             var target = new SMSServices(UoW);
             var result = target.ConstructSMSMessages(FixtureGenerator.CreateSMSRecepients(), templateList.First().Id);
@@ -80,12 +82,17 @@ namespace Aurora.SMS.Service.Tests
         [TestMethod()]
         public void SendBulkSMSTest()
         {
+            // TODO: use in memory DB because the data validations are not applied and the test is not creditable
+
+            var mockICurrentUserService = new Mock<ICurrentUserService>();
+            mockICurrentUserService.Setup(p => p.GetCurrentUser()).Returns("TestUser");
+
             var smsDB = Mock.Of<SMSDb>();
             var mockContext = Mock.Get(smsDB);
             // Mocking up dbFactory
             var mockdbFactory = new Mock<DbFactory<SMSDb>>();
             mockdbFactory.Setup(m => m.Init()).Returns(mockContext.Object);
-            IUnitOfWork<SMSDb> UoW = new UnitOfWork<SMSDb>(mockdbFactory.Object, "TestUser");
+            IUnitOfWork<SMSDb> UoW = new UnitOfWork<SMSDb>(mockdbFactory.Object, mockICurrentUserService.Object);
 
 
             // create an empty history
@@ -145,6 +152,9 @@ namespace Aurora.SMS.Service.Tests
         [TestMethod()]
         public void SendBulkSMSInMemoryTest()
         {
+
+            var mockICurrentUserService = new Mock<ICurrentUserService>();
+            mockICurrentUserService.Setup(p => p.GetCurrentUser()).Returns("TestUser");
             http://techbrij.com/unit-testing-asp-net-mvc-controller-service
 
             var faker = new Bogus.Faker();
@@ -155,7 +165,7 @@ namespace Aurora.SMS.Service.Tests
             // Mocking up dbFactory
             var mockdbFactory = new Mock<DbFactory<SMSDb>>();
             mockdbFactory.Setup(m => m.Init()).Returns(memDB);
-            IUnitOfWork<SMSDb> UoW = new UnitOfWork<SMSDb>(mockdbFactory.Object, "TestUser");
+            IUnitOfWork<SMSDb> UoW = new UnitOfWork<SMSDb>(mockdbFactory.Object, mockICurrentUserService.Object);
 
             // Set the template
             var template = new Template();
