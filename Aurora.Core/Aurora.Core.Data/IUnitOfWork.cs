@@ -16,12 +16,12 @@ namespace Aurora.Core.Data
     public interface IUnitOfWork<DB>  where DB : DbContext, IAuditableDBContext, new()
     {
         DB DbContext {get;}
-        DbFactory<DB> DbFactory { get; }
         /// <summary>
         /// The user name that that will be audited for all object changes
         /// </summary>
         string UserName { get; }
 
         void Commit();
+        GenericRepository<TEntity, DB> GetGenericRepositoryOf<TEntity>() where TEntity : EntityBase;
     }
 }

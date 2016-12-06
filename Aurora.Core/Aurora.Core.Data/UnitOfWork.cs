@@ -47,19 +47,18 @@ namespace Aurora.Core.Data
         {
             get { return _dbFactory.DBContext(); }
         }
-
-        public DbFactory<DB> DbFactory
-        {
-            get { return _dbFactory; }
-        }
-
-
+   
         public string UserName
         {
             get
             {
                 return _currentUserService.GetCurrentUser();
             }
+        }
+
+        internal DbFactory<DB> DbFactory
+        {
+            get { return _dbFactory; }
         }
 
         public void Commit()
@@ -72,8 +71,21 @@ namespace Aurora.Core.Data
             return DbContext.SaveChangesAsync();
         }
 
+        public Dictionary<Type, object> repositories = new Dictionary<Type, object>();
+        /// <summary>
+        /// Returns a generic repository from the dictionary and if does not exits then it creates one
+        /// </summary>
+        public GenericRepository<TEntity, DB> GetGenericRepositoryOf<TEntity>() where TEntity : EntityBase
+        {
+            if (repositories.Keys.Contains(typeof(TEntity)) == true)
+            {
+                return repositories[typeof(TEntity)] as GenericRepository<TEntity, DB>;
+            }
+            IRepository<TEntity> r = new GenericRepository<TEntity,DB>(_dbFactory);
+            repositories.Add(typeof(TEntity), r);
+            return r as GenericRepository<TEntity, DB>;
+        }
 
-        //TODO:Provide functionality for repository registration
 
     }
 }

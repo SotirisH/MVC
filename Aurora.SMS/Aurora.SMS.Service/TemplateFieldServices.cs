@@ -25,7 +25,7 @@ namespace Aurora.SMS.Service
 
         public TemplateFieldServices(IUnitOfWork<SMSDb> unitOfWork):base(unitOfWork)
         {
-            _templateFieldRepository = new GenericRepository<EFModel.TemplateField, SMSDb>(_unitOfWork.DbFactory);
+            _templateFieldRepository = _unitOfWork.GetGenericRepositoryOf<EFModel.TemplateField>();
         }
 
         public IEnumerable<EFModel.TemplateField> GetAllTemplateFields()

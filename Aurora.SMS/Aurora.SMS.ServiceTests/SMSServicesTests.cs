@@ -155,7 +155,7 @@ namespace Aurora.SMS.Service.Tests
 
             var mockICurrentUserService = new Mock<ICurrentUserService>();
             mockICurrentUserService.Setup(p => p.GetCurrentUser()).Returns("TestUser");
-            http://techbrij.com/unit-testing-asp-net-mvc-controller-service
+            //http://techbrij.com/unit-testing-asp-net-mvc-controller-service
 
             var faker = new Bogus.Faker();
 

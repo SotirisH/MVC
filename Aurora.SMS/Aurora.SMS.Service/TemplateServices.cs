@@ -30,9 +30,7 @@ namespace Aurora.SMS.Service
         
         public TemplateServices(IUnitOfWork<SMSDb> unitOfWork):base(unitOfWork)
         {
-            _templateRepository = new GenericRepository<EFModel.Template, SMSDb>(_unitOfWork.DbFactory);
-            
-        
+            _templateRepository = _unitOfWork.GetGenericRepositoryOf<EFModel.Template>();
         }
 
         public void CreateTemplate(EFModel.Template template)

@@ -16,6 +16,6 @@ namespace Aurora.SMS.Service.DTO
         public HashSet<MessageStatus> MessageStatusList { get; set; }
         public DateTime? SendDateFrom { get; set; }
         public DateTime? SendDateTo { get; set; }
-        public MessageStatus MessageStatus { get; set; }
+        public MessageStatus? MessageStatus { get; set; }
     }
 }

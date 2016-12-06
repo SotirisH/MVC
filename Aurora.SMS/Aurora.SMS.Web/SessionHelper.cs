@@ -26,7 +26,7 @@ namespace Aurora.SMS.Web
         // private constructor
         private SessionHelper()
         {
-            //Property1 = "default value";
+            Criteria = new QueryCriteriaDTO();
         }
 
         // Gets the current session.
@@ -37,6 +37,7 @@ namespace Aurora.SMS.Web
                 SessionHelper session = (SessionHelper)HttpContext.Current.Session["__MySession__"];
                 if (session == null)
                 {
+                    session = new SessionHelper();
                     HttpContext.Current.Session["__MySession__"] = session;
                 }
                 return session;

@@ -24,5 +24,6 @@ namespace Aurora.Core.Data
         IEnumerable<T> GetAll();
         // Gets entities using delegate
         IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
+        IQueryable<T> GetAsQueryable();
     }
 }

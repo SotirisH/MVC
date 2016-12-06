@@ -10,6 +10,7 @@ namespace Aurora.SMS.Common
     {
         Pending,
         Delivered,
+        Skipped,
         Error
     }
 }

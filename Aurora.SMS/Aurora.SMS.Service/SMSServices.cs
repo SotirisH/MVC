@@ -27,17 +27,17 @@ namespace Aurora.SMS.Service
     public class SMSServices : UnitOfWorkService<SMSDb>, ISMSServices
     {
         // TODO:Create a generic repository
-        private readonly GenericRepository<EFModel.Template, SMSDb> _templateRepository;
-        private readonly GenericRepository<EFModel.TemplateField, SMSDb> _templatefieldsRepository;
-        private readonly GenericRepository<EFModel.Provider, SMSDb> _providerRepository;
-        private readonly GenericRepository<EFModel.SMSHistory, SMSDb> _smsHistoryRepository;
+        private readonly GenericRepository<Template, SMSDb> _templateRepository;
+        private readonly GenericRepository<TemplateField, SMSDb> _templatefieldsRepository;
+        private readonly GenericRepository<Provider, SMSDb> _providerRepository;
+        private readonly GenericRepository<SMSHistory, SMSDb> _smsHistoryRepository;
 
         public SMSServices(IUnitOfWork<SMSDb> unitOfWork):base(unitOfWork)
         {
-            _templateRepository = new GenericRepository<EFModel.Template, SMSDb>(_unitOfWork.DbFactory);
-            _templatefieldsRepository = new GenericRepository<EFModel.TemplateField, SMSDb>(_unitOfWork.DbFactory);
-            _providerRepository = new GenericRepository<EFModel.Provider, SMSDb>(_unitOfWork.DbFactory);
-            _smsHistoryRepository = new GenericRepository<EFModel.SMSHistory, SMSDb>(_unitOfWork.DbFactory);
+            _templateRepository = unitOfWork.GetGenericRepositoryOf<Template>();
+            _templatefieldsRepository = unitOfWork.GetGenericRepositoryOf<TemplateField>();
+            _providerRepository = unitOfWork.GetGenericRepositoryOf<Provider>();
+            _smsHistoryRepository = unitOfWork.GetGenericRepositoryOf<SMSHistory>();
         }
 
         /// <summary>
@@ -68,7 +68,8 @@ namespace Aurora.SMS.Service
                 smsHistory.SendDateTime = DateTime.Now;
                 if (string.IsNullOrWhiteSpace(msg.MobileNumber))
                 {
-                    smsHistory.ProviderFeedback = "The MobileNumber is not present!";
+                    smsHistory.ProviderFeedback = "The mobile number is not present!";
+                    smsHistory.Status = Common.MessageStatus.Skipped;
                 }
                 
                 _smsHistoryRepository.Add(smsHistory);
