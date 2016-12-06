@@ -16,27 +16,34 @@
 </div>
 
 <div class="row">
+
     <div class="col-md-4">
         <h2>Create an SMS Template</h2>
         <p>
             Create or modify the existing SMS templates. An SMS template is used as a pattern for the contstruction of SMS the messages.
             It can contain a mix of plain text and dynamic fields
         </p>
-        <p>
-            <!--TOD: The ultimate bug on overloading !!!-->
-            @Html.ActionLink("Manage", "Index", "SMSTemplate",null, new {@class= "btn btn-default" })
-        </p>
     </div>
     <div class="col-md-4">
         <h2>Send bulk SMS</h2>
         <p>Send bulk SMS to multiple recepients by using a spcific template.        
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Start &raquo;</a></p>
     </div>
     <div class="col-md-4">
         <h2>View History</h2>
         <p>You can easily view the history of the messages that you have send in the past and check the status of each messages(Success, Pending, Error).
         You may want to resend the one that have failed using a different provider</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">View &raquo;</a></p>
     </div>
+</div>
+
+<div class="row">
+    <p class="col-md-4">
+        @Html.ActionLink("Manage >>", "Index", "SMSTemplate", null, new { @class = "btn btn-default" })
+    </p>
+    <p class="col-md-4">
+        @Html.ActionLink("Start  >>", "Index", "SendSMS", null, new { @class = "btn btn-default" })
+    </p>
+    <p class="col-md-4">
+        @Html.ActionLink("View  >>", "Index", "SmsHistory", null, new { @class = "btn btn-default" })
+    </p>
 </div>

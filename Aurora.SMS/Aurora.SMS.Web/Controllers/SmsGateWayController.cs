@@ -27,7 +27,7 @@ namespace Aurora.SMS.Web.Controllers
             if (string.IsNullOrWhiteSpace(smsGateWayName))
             {
                 Response.Cookies.Set(new HttpCookie("DefaultSmsGateWayName", vw.SmsGateWayList.FirstOrDefault() == null ? null : vw.SmsGateWayList.First().Name));
-                throw new NotImplementedException();
+                //throw new NotImplementedException();
             }
             return View(vw);
         }

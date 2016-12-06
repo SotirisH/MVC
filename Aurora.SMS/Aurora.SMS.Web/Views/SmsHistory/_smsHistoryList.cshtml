@@ -1,8 +1,15 @@
 ﻿@model IEnumerable<Aurora.SMS.EFModel.SMSHistory>
+<style>
+    table {
+        width: 100%; /* Optional */
+    }
 
-
-<table class="table table-striped table-hover ">
-    <thead>
+    tbody td, thead th {
+        width: 20%;  /* Optional */
+    }
+</style>
+<table class="table table-striped table-hover">
+    <thead style="display: block">
         <tr>
             <th>#</th>
             <th>SessionId</th>
@@ -12,7 +19,7 @@
             <th>Message</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody style="height:600px;overflow-y:auto;display: block;overflow-x: hidden;">
         @foreach (var item in Model)
         {
             string statusClass = "";
