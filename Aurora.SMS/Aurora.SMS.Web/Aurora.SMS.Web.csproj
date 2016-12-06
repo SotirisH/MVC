@@ -191,6 +191,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\SmsHistoryController.cs" />
+    <Compile Include="Models\SmsHistory\SmsHistoryViewModel.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
@@ -297,6 +299,8 @@
     <Content Include="Views\SendSMS\BulkSmsResult.cshtml" />
     <Content Include="Views\SmsGateWay\Change.cshtml" />
     <Content Include="Views\SmsGateWay\_SmsGateWay.cshtml" />
+    <Content Include="Views\SmsHistory\Index.cshtml" />
+    <Content Include="Views\SmsHistory\_smsHistoryList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

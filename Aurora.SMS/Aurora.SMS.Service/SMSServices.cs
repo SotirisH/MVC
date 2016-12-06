@@ -9,6 +9,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Aurora.SMS.EFModel;
+using Aurora.SMS.Service.DTO;
+using LinqKit;
 
 namespace Aurora.SMS.Service
 {
@@ -18,6 +20,7 @@ namespace Aurora.SMS.Service
         IEnumerable<DTO.SMSMessageDTO> ConstructSMSMessages(IEnumerable<ContractDTO> recepients, int templateId);
         string GetAvailableCredits(string smsGateWayName);
         IEnumerable<EFModel.Provider> GetAllProviders();
+        IEnumerable<SMSHistory> GetHistory(SmsHistoryCriteriaDTO smsHistoryCriteriaDTO);
     }
 
 
@@ -181,6 +184,37 @@ namespace Aurora.SMS.Service
         public IEnumerable<Provider> GetAllProviders()
         {
             return _providerRepository.GetAll();
+        }
+
+        public IEnumerable<SMSHistory> GetHistory(SmsHistoryCriteriaDTO smsHistoryCriteriaDTO)
+        {
+            var query = _smsHistoryRepository.GetAsQueryable().AsExpandable();
+            var finalExpression = PredicateBuilder.New<EFModel.SMSHistory>(true);
+            if (smsHistoryCriteriaDTO.SessionId.HasValue)
+            {
+                finalExpression = finalExpression.And(c => c.SessionId == smsHistoryCriteriaDTO.SessionId);
+            }
+            if (smsHistoryCriteriaDTO.SendDateFrom.HasValue)
+            {
+                finalExpression = finalExpression.And(c => c.SendDateTime >= smsHistoryCriteriaDTO.SendDateFrom);
+            }
+            if (smsHistoryCriteriaDTO.SendDateTo.HasValue)
+            {
+                finalExpression = finalExpression.And(c => c.SendDateTime <= smsHistoryCriteriaDTO.SendDateFrom);
+            }
+            var messageStatusExpression = PredicateBuilder.New<SMSHistory>(true);
+            if (smsHistoryCriteriaDTO.MessageStatusList!=null)
+            { 
+                foreach (var messageStatus in smsHistoryCriteriaDTO.MessageStatusList)
+                {
+                    messageStatusExpression = messageStatusExpression.Or (c => c.Status == messageStatus);
+                }
+            }
+
+            finalExpression = finalExpression.And(messageStatusExpression);
+
+            return query.Where(finalExpression).ToArray();
+
         }
     }
 }

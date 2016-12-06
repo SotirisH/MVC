@@ -40,5 +40,13 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+    // http://stackoverflow.com/questions/30051283/why-does-my-bootstrap-popover-not-work
+    $(function () {
+        $('[data-toggle="popover"]').popover();
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
 </body>
 </html>
