@@ -4,6 +4,7 @@ The solution was inspired from Christo's Sakellarios blog "ASP.NET MVC Solution 
 https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices/
 
 An overview of the application can been seen on the file "SMS Diagram" and can be opened by the web tool www.draw.io
+My LinkedIn profile:https://www.linkedin.com/in/sotiris-soto-hatzis-4a578a100
 
 ##Technologies & frameworks used:
 - MVC 5
