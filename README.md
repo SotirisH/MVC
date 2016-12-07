@@ -3,7 +3,8 @@ This is a demo project to explore the best practices in MVC.
 The solution was inspired from Christo's Sakellarios blog "ASP.NET MVC Solution Architecture – Best Practice"
 https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices/
 
-
+An overview of the application can been seen on the file "SMS Diagram" and can be opened by the web tool www.draw.io
+My LinkedIn profile:https://www.linkedin.com/in/sotiris-soto-hatzis-4a578a100
 
 ##Technologies & frameworks used:
 - MVC 5
@@ -12,7 +13,7 @@ https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices
 - Bogus
 - Automapper
 - Moq
-- Fluent Validation
+- [Fluent Validation](https://chsakell.com/2015/01/17/web-api-powerful-custom-model-validation-with-fluentvalidation/)
 - Memory EF
 
 
