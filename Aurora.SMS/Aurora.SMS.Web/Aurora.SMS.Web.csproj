@@ -192,6 +192,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\SmsHistoryController.cs" />
+    <Compile Include="Models\SmsGateway\SmsGatewayProxy.cs" />
     <Compile Include="Models\SmsHistory\SmsHistoryViewModel.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -213,7 +214,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PreviewSMSMessageViewModel.cs" />
     <Compile Include="Models\SelectedTemplateViewModel.cs" />
-    <Compile Include="Models\SmsGateWay\SmsGateWayViewModel.cs" />
+    <Compile Include="Models\SmsGateway\SmsGateWayViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

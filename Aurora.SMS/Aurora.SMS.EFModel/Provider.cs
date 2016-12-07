@@ -13,7 +13,6 @@ namespace Aurora.SMS.EFModel
     /// </summary>
     public class Provider:EntityBase
     {
-        [Key]
         public string Name { get; set; }
         /// <summary>
         /// Url that points to the SMS GateWay

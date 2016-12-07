@@ -12,6 +12,7 @@ namespace Aurora.SMS.Web.Controllers
     /// </summary>
     public class SmsGateWayController : Controller
     {
+     
         private readonly ISMSServices _smsServices;
         public SmsGateWayController(ISMSServices smsServices)
         {
@@ -19,16 +20,22 @@ namespace Aurora.SMS.Web.Controllers
         }
         public ViewResult Change()
         {
-            var vw = new Models.SmsGateWay.SmsGateWayViewModel();
+            var vw = new Models.SmsGateway.SmsGateWayViewModel();
             vw.SmsGateWayList = _smsServices.GetAllProviders().ToList();
-
-            var smsGateWayName = Response.Cookies["DefaultSmsGateWayName"].Value;
+            var cookie = GetDefaultSmsGateWayCookie();
+            var smsDefaultGateWayName = cookie.Value;
             // if the DefaultSmsGateWayName has not been set the the first item is set as the DefaultSmsGateWayName
-            if (string.IsNullOrWhiteSpace(smsGateWayName))
+            if (string.IsNullOrWhiteSpace(smsDefaultGateWayName))
             {
-                Response.Cookies.Set(new HttpCookie("DefaultSmsGateWayName", vw.SmsGateWayList.FirstOrDefault() == null ? null : vw.SmsGateWayList.First().Name));
-                //throw new NotImplementedException();
+                if(vw.SmsGateWayList.Any())
+                {
+                    smsDefaultGateWayName = vw.SmsGateWayList.First().Name;
+                }
             }
+            vw.DefaultSmsGateWay = smsDefaultGateWayName;
+            cookie.Value = smsDefaultGateWayName;
+            cookie.Expires = DateTime.MaxValue;
+            Request.Cookies.Set(cookie);
             return View(vw);
         }
 
@@ -38,6 +45,36 @@ namespace Aurora.SMS.Web.Controllers
             ViewBag.SmsGateWayName = smsGateWayName;
             return PartialView("_SmsGateWay");
         }
- 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model">Generic Post load</param>
+        [HttpPost]
+        public void SetDefault(FormCollection model)
+        {
+            // Set default on cookie
+            var cookie = GetDefaultSmsGateWayCookie();
+            cookie.Value = model["smsGateWayProxy.Name"];
+            Request.Cookies.Set(cookie);
+        }
+        public ViewResult SetDefault()
+        {
+
+            return null;
+        }
+
+
+
+        private HttpCookie GetDefaultSmsGateWayCookie()
+        {
+            HttpCookie cookie= Request.Cookies["DefaultSmsGateWayName"];
+            if (cookie==null)
+            {
+                cookie = new HttpCookie("DefaultSmsGateWayName");
+                Request.Cookies.Set(cookie);
+            }
+            return cookie;
+        }
     }
 }
