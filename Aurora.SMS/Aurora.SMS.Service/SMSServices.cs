@@ -16,10 +16,19 @@ namespace Aurora.SMS.Service
 {
     public interface ISMSServices
     {
-        Guid SendBulkSMS(IEnumerable<DTO.SMSMessageDTO> messagesToSent, string providerName);
+        Guid SendBulkSMS(IEnumerable<SMSMessageDTO> messagesToSent, string providerName);
         IEnumerable<DTO.SMSMessageDTO> ConstructSMSMessages(IEnumerable<ContractDTO> recepients, int templateId);
         string GetAvailableCredits(string smsGateWayName);
-        IEnumerable<EFModel.Provider> GetAllProviders();
+        /// <summary>
+        /// Gets the available credits by suplying the credentials.
+        /// It is mainly used for test purposes
+        /// </summary>
+        /// <param name="smsGateWayName"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        string GetAvailableCredits(string smsGateWayName,string userName,string password);
+        IEnumerable<Provider> GetAllProviders();
         IEnumerable<SMSHistory> GetHistory(SmsHistoryCriteriaDTO smsHistoryCriteriaDTO);
     }
 
@@ -175,11 +184,16 @@ namespace Aurora.SMS.Service
 
         public string GetAvailableCredits(string smsGateWayName)
         {
-            EFModel.Provider provider = _providerRepository.GetById(smsGateWayName, true);
-            List<Task> serverRequests = new List<Task>();
+            Provider provider = _providerRepository.GetById(smsGateWayName, true);
+            return GetAvailableCredits(smsGateWayName, provider.UserName, provider.PassWord);
+        }
+
+        public string GetAvailableCredits(string smsGateWayName, string userName, string password)
+        {
             // TODO:Need to abstract the ClientProviderFactory
-            var smsProviderProxy = ClientProviderFactory.CreateClient(smsGateWayName, provider.UserName, provider.PassWord);
-            return smsProviderProxy.GetAvailableCreditsAsync().Result;
+            var smsProviderProxy = ClientProviderFactory.CreateClient(smsGateWayName, userName, userName);
+            return  smsProviderProxy.GetAvailableCreditsAsync().Result;
+
         }
 
         public IEnumerable<Provider> GetAllProviders()
@@ -217,5 +231,7 @@ namespace Aurora.SMS.Service
             return query.Where(finalExpression).ToArray();
 
         }
+
+
     }
 }

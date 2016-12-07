@@ -20,28 +20,39 @@ namespace Aurora.SMS.Web.Controllers
         }
         public ViewResult Change()
         {
-            var vw = new Models.SmsGateway.SmsGateWayViewModel();
-            vw.SmsGateWayList = _smsServices.GetAllProviders().ToList();
+
+            var smsProxies = _smsServices.GetAllProviders();
             var cookie = GetDefaultSmsGateWayCookie();
             var smsDefaultGateWayName = cookie.Value;
             // if the DefaultSmsGateWayName has not been set the the first item is set as the DefaultSmsGateWayName
             if (string.IsNullOrWhiteSpace(smsDefaultGateWayName))
             {
-                if(vw.SmsGateWayList.Any())
+                if (smsProxies.Any())
                 {
-                    smsDefaultGateWayName = vw.SmsGateWayList.First().Name;
+                    smsDefaultGateWayName = smsProxies.First().Name;
                 }
             }
-            vw.DefaultSmsGateWay = smsDefaultGateWayName;
             cookie.Value = smsDefaultGateWayName;
-            cookie.Expires = DateTime.MaxValue;
             Request.Cookies.Set(cookie);
-            return View(vw);
+
+            var vm = new List<Models.SmsGateway.SmsGatewayProxyViewModel>();
+            foreach (var item in smsProxies)
+            {
+                Models.SmsGateway.SmsGatewayProxyViewModel tmp = new Models.SmsGateway.SmsGatewayProxyViewModel();
+                tmp.LogoUrl = item.LogoUrl;
+                tmp.Name = item.Name;
+                tmp.IsDefault = (smsDefaultGateWayName == item.Name);
+                tmp.UserName = item.UserName;
+                tmp.Pasword = item.PassWord;
+                vm.Add(tmp);
+            }
+
+            return View(vm);
         }
 
         public PartialViewResult SmsGateWayBlockView()
         {
-            var smsGateWayName = Response.Cookies["DefaultSmsGateWayName"].Value;
+            var smsGateWayName = GetDefaultSmsGateWayCookie().Value;
             ViewBag.SmsGateWayName = smsGateWayName;
             return PartialView("_SmsGateWay");
         }
@@ -51,27 +62,41 @@ namespace Aurora.SMS.Web.Controllers
         /// </summary>
         /// <param name="model">Generic Post load</param>
         [HttpPost]
-        public void SetDefault(FormCollection model)
+        public RedirectToRouteResult SetDefault(FormCollection model)
         {
-            // Set default on cookie
+            // Update cookie
+            var cookie = Response.Cookies["DefaultSmsGateWayName"];
+            cookie.Value = model["Index"];
+            Response.Cookies.Set(cookie);
+            return RedirectToAction("Change");
+        }
+
+        /// <summary>
+        /// Returns the available credits of the active SmsProxy
+        /// </summary>
+        /// <returns></returns>
+        public string GetAvailableCredits()
+        {
             var cookie = GetDefaultSmsGateWayCookie();
-            cookie.Value = model["smsGateWayProxy.Name"];
-            Request.Cookies.Set(cookie);
+            string defaultSmsGateWayName = cookie.Value;
+            if (!string.IsNullOrWhiteSpace(defaultSmsGateWayName))
+            {
+               return _smsServices.GetAvailableCredits(defaultSmsGateWayName);
+            }
+            return "?";
         }
-        public ViewResult SetDefault()
-        {
-
-            return null;
-        }
-
-
-
+        /// <summary>
+        /// Retrieves or creates an HttpCookie where the nave 
+        /// of the default SmsGateway is strored
+        /// </summary>
+        /// <returns></returns>
         private HttpCookie GetDefaultSmsGateWayCookie()
         {
             HttpCookie cookie= Request.Cookies["DefaultSmsGateWayName"];
             if (cookie==null)
             {
                 cookie = new HttpCookie("DefaultSmsGateWayName");
+                cookie.Expires = DateTime.MaxValue;
                 Request.Cookies.Set(cookie);
             }
             return cookie;

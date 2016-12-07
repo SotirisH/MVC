@@ -68,10 +68,10 @@ namespace Aurora.SMS.Providers
         public async Task<string> GetAvailableCreditsAsync()
         {
             string path = @"/api/SMSGateway/GetAvailableCredits?username=" + _userName + "&password=" + _password;
-            HttpResponseMessage response = await client.GetAsync(path);
+            HttpResponseMessage response = await client.GetAsync(path).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadAsStringAsync();
+                return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             }
             {
                 return "Error!" + response.ReasonPhrase;
