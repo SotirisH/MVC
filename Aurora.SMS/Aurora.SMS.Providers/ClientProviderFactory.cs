@@ -11,14 +11,14 @@ namespace Aurora.SMS.Providers
     /// </summary>
     public class ClientProviderFactory
     {
-       public static ISMSClientProvider CreateClient(string providerName, 
+       public static ISMSClientProxy CreateClient(string providerName, 
                                                         string username,
                                                         string password)
        {
             switch (providerName.ToLower())
             {
-                case "aurorafakeprovider":
-                    return new AuroraFakeProvider(username, password);
+                case "snailabroad":
+                    return new SnailAbroadProxy(username, password);
                 default:
                     throw new Exception(string.Format("The provider with name {0} has not been registered!", providerName));
             }

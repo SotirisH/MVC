@@ -22,7 +22,7 @@ namespace Aurora.SMS.Service.Tests
         [TestMethod()]
         public void GetAvailableCredits()
         {
-            var target = Providers.ClientProviderFactory.CreateClient("AuroraFakeProvider", "test", "test");
+            var target = Providers.ClientProviderFactory.CreateClient("snailabroad", "test", "test");
             var task = target.GetAvailableCreditsAsync();
             task.Wait();
             string result = task.Result;
@@ -33,7 +33,7 @@ namespace Aurora.SMS.Service.Tests
         [TestMethod()]
         public void SendTestSMS()
         {
-            var target = Providers.ClientProviderFactory.CreateClient("AuroraFakeProvider", "test", "test");
+            var target = Providers.ClientProviderFactory.CreateClient("snailabroad", "test", "test");
             var task = target.SendSMSAsync(200, "0982342", "Test SMS", "Soto", null);
             task.Wait();
             var result = task.Result;
@@ -58,7 +58,7 @@ namespace Aurora.SMS.Service.Tests
                 //{
                 //     new KeyValuePair<string, string>("echo", "echo")
                 //});
-                var result = client.PostAsync("/api/SMSGateway/TestPost", content).Result;
+                var result = client.PostAsync("/api/snailabroad/TestPost", content).Result;
                 string resultContent = result.Content.ReadAsStringAsync().Result;
                 Console.WriteLine(resultContent);
             }

@@ -64,9 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuroraFakeProvider.cs" />
+    <Compile Include="SnailAbroadProxy.cs" />
     <Compile Include="ClientProviderFactory.cs" />
-    <Compile Include="ISMSProvider.cs" />
+    <Compile Include="ISMSClientProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SMSResult.cs" />
   </ItemGroup>

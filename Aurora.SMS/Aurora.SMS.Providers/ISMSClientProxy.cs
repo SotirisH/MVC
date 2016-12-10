@@ -9,7 +9,7 @@ namespace Aurora.SMS.Providers
     /// <summary>
     /// The base Interaface for all client provider implementations
     /// </summary>
-    public interface ISMSClientProvider
+    public interface ISMSClientProxy
     {
         /// <summary>
         /// Main function to communicate with the provider.

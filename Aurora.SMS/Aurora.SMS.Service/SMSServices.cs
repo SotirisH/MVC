@@ -30,6 +30,7 @@ namespace Aurora.SMS.Service
         string GetAvailableCredits(string smsGateWayName,string userName,string password);
         IEnumerable<Provider> GetAllProviders();
         IEnumerable<SMSHistory> GetHistory(SmsHistoryCriteriaDTO smsHistoryCriteriaDTO);
+        void SaveProxy(Provider smsProxy);
     }
 
 
@@ -156,7 +157,7 @@ namespace Aurora.SMS.Service
         /// <param name="provider"></param>
         /// <param name="smsHistory"></param>
         /// <returns></returns>
-        private async Task SendSMSToProvider(ISMSClientProvider smsClient,
+        private async Task SendSMSToProvider(ISMSClientProxy smsClient,
                                                     EFModel.Provider provider,
                                                     EFModel.SMSHistory smsHistory)
         {
@@ -232,6 +233,10 @@ namespace Aurora.SMS.Service
 
         }
 
-
+        public void SaveProxy(Provider smsProxy)
+        {
+            _providerRepository.Update(smsProxy);
+            _unitOfWork.Commit();
+        }
     }
 }

@@ -5,69 +5,96 @@
 <p>Here you can configure your preferable Sms gateway</p>
 <hr />
 
-
-<div class="col-md-3">
-    <h4 class="well well-sm">Available Gateways</h4>
-    <ul class="nav nav-pills nav-stacked  table-bordered center-block">
-        @foreach (var smsGateWay in Model)
-        {
-            <li class="@smsGateWay.NavPillActiveClassValue">
-                <a href="#@smsGateWay.Name" data-toggle="tab" aria-expanded="@smsGateWay.IsDefault.ToString()">
-                    @smsGateWay.Name
-                @if (@smsGateWay.IsDefault)
+<div class="row">
+    <div class="col-md-3">
+        <h4 class="well well-sm">Available Gateways</h4>
+        <ul class="nav nav-pills nav-stacked  table-bordered center-block">
+            @foreach (var smsGateWay in Model)
+            {
+                <li class="@smsGateWay.NavPillActiveClassValue">
+                    <a class="pill" href="#@smsGateWay.Name" data-toggle="tab" aria-expanded="@smsGateWay.IsDefault.ToString()">
+                        @smsGateWay.Name
+                        @if (@smsGateWay.IsDefault)
                 {
-                    <span class="label label-default small">Default</span>
-                }
-            </a>
-        </li>
+                            <span class="label label-default small">Default</span>
+                        }
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div id="myTabContent" class="tab-content col-md-9">
+        <h4 class="well well-sm">Details</h4>
+        @foreach (var smsGateWayProxy in Model)
+            {
+            <div class="tab-pane fade @smsGateWayProxy.TabPageActiveClassValue" id="@smsGateWayProxy.Name">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="@smsGateWayProxy.SiteUrl"><img alt="@smsGateWayProxy.Name" src="@smsGateWayProxy.LogoUrl" /></a>
+                    </div>
+                    @using (Html.BeginForm())
+                {
+                        <div class="form-horizontal">
+                            <fieldset class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label form-inline">User Name</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(p => smsGateWayProxy.UserName, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label form-inline">Password</label>
+                                    <div class="col-md-4">
+                                        @Html.PasswordFor(p => smsGateWayProxy.Pasword, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="panel-footer clearfix">
+                            <input type="hidden" name="proxyname" value="@smsGateWayProxy.Name" />
+                            <!--How to call different actions using multiple buttons. Use formaction
+                                Only HTML 5 http://www.binaryintellect.net/articles/c69d78a3-21d7-416b-9d10-6b812a862778.aspx-->
+                            @if (smsGateWayProxy.IsDefault)
+                                {
+                                <input type="submit" disabled="disabled" value="Set Default" formaction="SetDefault" formmethod="post" class="btn  btn-sm btn-default disabled" />
+                                }
+                                else
+                                {
+                                <input type="submit" value="Set Default" formaction="SetDefault" formmethod="post" class="btn  btn-sm btn-default" />
+                                }
+                            <button value="Test" class="buttonTest btn btn-sm btn-success">Test</button>
+                            <button value="Save" class="buttonSave btn  btn-sm btn-primary btn-sm pull-right">Save</button>
+                        </div>
+                        }
+                </div>
+            </div>
         }
-    </ul>
-</div>
 
-<div id="myTabContent" class="tab-content col-md-9">
-    <h4 class="well well-sm">Details</h4>
-    @foreach (var smsGateWayProxy in Model)
-    {
-        <div class="tab-pane fade @smsGateWayProxy.TabPageActiveClassValue" id="@smsGateWayProxy.Name">
-            <div class="panel panel-default">
-                <div class="panel-heading">@smsGateWayProxy.Name</div>
-
-                @using (Html.BeginForm())
-                {
-                    <div class="form-horizontal">
-                        <fieldset class="panel-body">
-                            <img alt="@smsGateWayProxy.LogoUrl" src="@smsGateWayProxy.LogoUrl" />
-                            <div class="form-group">
-                                <label class="col-md-2 control-label form-inline">User Name</label>
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(p => smsGateWayProxy.UserName, new { @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label form-inline">Password</label>
-                                <div class="col-md-4">
-                                    @Html.PasswordFor(p => smsGateWayProxy.Pasword, new { @class = "form-control" })
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="panel-footer clearfix">
-                        <input type="hidden" name="Index" value="@smsGateWayProxy.Name" />
-                        <!--Onlly HTML 5 http://www.binaryintellect.net/articles/c69d78a3-21d7-416b-9d10-6b812a862778.aspx-->
-                        @if (smsGateWayProxy.IsDefault)
-                        {
-                            <input type="submit" disabled="disabled" value="Set Default" formaction="SetDefault" formmethod="post" class="btn  btn-sm btn-default disabled" />
-                        }
-                        else
-                        {
-                            <input type="submit" value="Set Default" formaction="SetDefault" formmethod="post" class="btn  btn-sm btn-default" />
-                        }
-                        <input type="submit" value="Test" formaction="Test" formmethod="post" class="btn btn-sm btn-success" />
-                        <input type="submit" value="Save" formaction="Save" formmethod="post" class="btn  btn-sm btn-primary btn-sm pull-right" />
-                    </div>
-                }
+        <div>
+            <div id="divSuccess" class="alert alert-success collapse" role="alert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong id="spanCaption"></strong>
+                <p>
+                    Your available credits are:<span id="spanAvailableCredits"></span>
+                </p>
             </div>
         </div>
-    }
+
+        <div id="divError" class="alert alert-danger collapse" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Oh snap!</strong>
+            <p>
+                Error message:<span id="spanErrorMesage"></span>
+            </p>
+        </div>
+
+    </div>
+
 </div>
 
+
+@section scripts
+{
+    <script src="~/Scripts/SmsGateWay/Change.js"></script>
+}

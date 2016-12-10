@@ -16,7 +16,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
     /// <remarks>
     /// For demostration purposes the gateway is slow and creates random errors
     /// </remarks>
-    public class SMSGatewayController : ApiController
+    public class SnailAbroadController : ApiController
     {
       
 
@@ -33,12 +33,12 @@ namespace Aurora.SMS.FakeProvider.Controllers
 
         public virtual void ApplyDelay()
         {
-           Thread.Sleep(500);
+           Thread.Sleep(1500);
         }
 
         /// <summary>
         /// Test method
-        /// http://localhost:8080/api/SMSGateway/EchoTest?echo=sdsd
+        /// http://localhost:8080/api/SnailAbroad/EchoTest?echo=sdsd
         /// </summary>
         /// <param name="echo"></param>
         /// <returns></returns>

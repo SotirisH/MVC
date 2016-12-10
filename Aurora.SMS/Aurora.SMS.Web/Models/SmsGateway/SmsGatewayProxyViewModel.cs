@@ -11,6 +11,7 @@ namespace Aurora.SMS.Web.Models.SmsGateway
     /// </summary>
     public class SmsGatewayProxyViewModel
     {
+        public string SiteUrl { get; set; }
         public string LogoUrl { get; set; }
         public string Name { get; set; }
         public string UserName { get; set; }

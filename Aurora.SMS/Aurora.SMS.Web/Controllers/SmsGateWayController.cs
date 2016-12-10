@@ -44,6 +44,7 @@ namespace Aurora.SMS.Web.Controllers
                 tmp.IsDefault = (smsDefaultGateWayName == item.Name);
                 tmp.UserName = item.UserName;
                 tmp.Pasword = item.PassWord;
+                tmp.SiteUrl = item.Url;
                 vm.Add(tmp);
             }
 
@@ -58,7 +59,7 @@ namespace Aurora.SMS.Web.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Sets this proxy as default
         /// </summary>
         /// <param name="model">Generic Post load</param>
         [HttpPost]
@@ -66,10 +67,44 @@ namespace Aurora.SMS.Web.Controllers
         {
             // Update cookie
             var cookie = Response.Cookies["DefaultSmsGateWayName"];
-            cookie.Value = model["Index"];
+            cookie.Value = model["proxyname"];
             Response.Cookies.Set(cookie);
             return RedirectToAction("Change");
         }
+        
+        [HttpPost]
+        public ActionResult Save(string proxyName,string userName,string password)
+        {
+            try
+            {
+                var efproxy = _smsServices.GetAllProviders().First(m => m.Name == proxyName);
+                // update only username & password
+                efproxy.UserName = userName;
+                efproxy.PassWord = password;
+                _smsServices.SaveProxy(efproxy);
+                var availableCredits = _smsServices.GetAvailableCredits(proxyName);
+                return Json(new { Error = false, Message = availableCredits });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Error = true , Message =ex.Message});
+            }
+
+        }
+
+        public ActionResult TestProxy(string proxyName, string userName, string password)
+        {
+            try
+            {
+                var availableCredits = _smsServices.GetAvailableCredits(proxyName,userName, password);
+                return Json(new { Error = false, Message = availableCredits });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Error = true, Message = ex.Message });
+            }
+        }
+
 
         /// <summary>
         /// Returns the available credits of the active SmsProxy

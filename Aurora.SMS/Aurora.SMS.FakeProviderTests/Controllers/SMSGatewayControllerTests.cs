@@ -16,7 +16,7 @@ namespace Aurora.SMS.FakeProvider.Controllers.Tests
         [TestMethod()]
         public void SendSMSTest()
         {
-            var target = Moq.Mock.Of<SMSGatewayController>();
+            var target = Moq.Mock.Of<SnailAbroadController>();
             
             var moqController = Moq.Mock.Get(target);
             moqController.Setup(c => c.DecreaseCredit()).Verifiable();

@@ -15,7 +15,7 @@ namespace Aurora.SMS.Providers
     /// <remarks>
     /// Example:https://www.asp.net/web-api/overview/advanced/calling-a-web-api-from-a-net-client
     /// </remarks>
-    class AuroraFakeProvider : ISMSClientProvider
+    class SnailAbroadProxy : ISMSClientProxy
     {
 
         enum AuroraFakeMessageStatus
@@ -54,7 +54,7 @@ namespace Aurora.SMS.Providers
 
         private readonly string _userName,_password;
 
-        public AuroraFakeProvider(string userName,
+        public SnailAbroadProxy(string userName,
                                     string password)
         {
             _userName = userName;
@@ -67,7 +67,7 @@ namespace Aurora.SMS.Providers
 
         public async Task<string> GetAvailableCreditsAsync()
         {
-            string path = @"/api/SMSGateway/GetAvailableCredits?username=" + _userName + "&password=" + _password;
+            string path = @"/api/snailabroad/GetAvailableCredits?username=" + _userName + "&password=" + _password;
             HttpResponseMessage response = await client.GetAsync(path).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
@@ -84,7 +84,7 @@ namespace Aurora.SMS.Providers
                                     string sender, 
                                     DateTime? scheduledDate)
         {
-            string path = @"/api/SMSGateway/SendSMS";
+            string path = @"/api/snailabroad/SendSMS";
             // Create Parameters obj
             var param = new
             {
