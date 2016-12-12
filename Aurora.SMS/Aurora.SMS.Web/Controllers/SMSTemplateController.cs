@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,6 +18,8 @@ namespace Aurora.SMS.Web.Controllers
         {
             this.templateServices = templateServices;
             this.templateFieldServices = templateFieldServices;
+            
+           
         }
 
         // GET: SMSTemplate
@@ -24,25 +27,33 @@ namespace Aurora.SMS.Web.Controllers
         {
             return View(templateServices.GetAll());
         }
+        [Obsolete("Only for UI test")]
         public ViewResult CreateEdit()
         {
-            return View("CreateEdit", new EFModel.Template());
+            return View("CreateEdit", new Models.SmsTemplate.SmsTemplateViewModel());
         }
 
         [HttpPost]
-        public ActionResult CreateEdit(EFModel.Template template)
+        public ActionResult CreateEdit(Models.SmsTemplate.SmsTemplateViewModel vm)
         {
+            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<Models.SmsTemplate.SmsTemplateViewModel, EFModel.Template>());
+            // Demo using FluentValidation
             if (!ModelState.IsValid)
             {
-                return null;
+                return View(vm);
             }
-            if (template.Id != 0)
+            //var regExp = "<div class=\"alert alert-dismissible alert-success\" contenteditable=\"false\" style=\"display:inline-block\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><span>" + templateField.Name + "</span></div>";
+            // strip any additional spaces that Js might add in the experssion
+            vm.Text = Regex.Replace(vm.Text, "alert\\s*-\\s*dismissible", "alert-dismissible");
+            vm.Text = Regex.Replace(vm.Text, "alert\\s*-\\s*success", "alert-dismissible");
+            vm.Text = Regex.Replace(vm.Text, "data\\s*-\\s*dismiss", "alert-dismissible");
+            if (vm.Id != 0)
             {
-                templateServices.Update(template);
+                templateServices.Update(AutoMapper.Mapper.Map<EFModel.Template>(vm)); 
             }
             else
             {
-                templateServices.CreateTemplate(template);
+                templateServices.CreateTemplate(AutoMapper.Mapper.Map<EFModel.Template>(vm));
             }
             return RedirectToAction("Index");
             
@@ -54,12 +65,13 @@ namespace Aurora.SMS.Web.Controllers
         /// <returns></returns>
         public ViewResult Create()
         {
-            return View("CreateEdit", new EFModel.Template());
+            return View("CreateEdit",new Models.SmsTemplate.SmsTemplateViewModel());
         }
 
         public ViewResult Edit(int id)
         {
-            return View("CreateEdit", templateServices.GetById(id));
+            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<EFModel.Template, Models.SmsTemplate.SmsTemplateViewModel>());
+            return View("CreateEdit", AutoMapper.Mapper.Map< Models.SmsTemplate.SmsTemplateViewModel>(templateServices.GetById(id)));
         }
 
         public ViewResult GetTemplateFields()

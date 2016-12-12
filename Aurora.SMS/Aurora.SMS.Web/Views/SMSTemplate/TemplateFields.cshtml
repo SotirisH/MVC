@@ -14,17 +14,22 @@
                 <h3 class="panel-title">@groupItem.Key</h3>
             </div>
             <div class="panel-body">
-                <div class="list-group">
-                    <!--Panel content--> 
-                    @foreach (var templateField in groupItem)
-                    {
-                        <a href="#" class="list-group-item">
-                            <h4 class="list-group-item-heading small">@templateField.Name</h4>
-                            <p class="list-group-item-text small">@templateField.Description</p>
-                        </a>
-                    }
-                </div>
+                <!--Panel content-->
+                @foreach (var templateField in groupItem)
+                {
+                    <!--HTML5 Custom Data Attributes (data-*)
+                        http://html5doctor.com/html5-custom-data-attributes/
+                        -->
+                    <a class="list-group-item" href="#" data-templatefield="@templateField.Name">
+                        <div class="container-fluid">
+                            <span class="glyphicon glyphicon-info-sign col-sm-1" data-toggle="tooltip" data-placement="top" data-original-title="@templateField.Description"></span>
+                            <span class="list-group-item-heading col-sm-11">@templateField.Name</span>
+
+                        </div>
+                    </a>
+                }
             </div>
         </div>
+
     }
 }

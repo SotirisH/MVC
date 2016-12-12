@@ -10,4 +10,5 @@
 /// <reference path="respond.matchmedia.addListener.js" />
 /// <reference path="smsgateway/change.js" />
 /// <reference path="smsgateway/smsgateway.js" />
+/// <reference path="smstemplate/createedit.js" />
 /// <reference path="underscore.min.js" />

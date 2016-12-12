@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Aurora.SMS.EFModel;
 using Aurora.SMS.Service.DTO;
 using LinqKit;
+using System.Web;
 
 namespace Aurora.SMS.Service
 {
@@ -127,9 +128,16 @@ namespace Aurora.SMS.Service
                  * Here, i loop through all the templateFields(there are only few so iloop them all even if don't exist in thetemplate text )
                  * and i repace with a value that i extract from the recepient Object using reflection
                  * */
+
+
+                // Sample"CreateEdit&nbsp;<div class="alert alert-dismissible alert-success" contenteditable="false" style="display:inline-block"><button type="button" class="close" data-dismiss="alert">×</button><span>CompanyDescription</span></div>
+                //Step 1:HttpUtility.HtmlDecode
+                smsText = HttpUtility.HtmlDecode(smsText);
                 foreach (var templateField in templateFields)
                 {
-                    smsText = Regex.Replace(smsText, "({" + templateField.Name + "})", GetFormattedValue(recepient, templateField));
+                    var regExp = "<div class=\"alert alert-dismissible alert-success\" contenteditable=\"false\" style=\"display:inline-block\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><span>" + templateField.Name + "</span></div>";
+                    smsText = Regex.Replace(smsText, regExp, GetFormattedValue(recepient, templateField));
+                    //smsText = Regex.Replace(smsText, "({" + templateField.Name + "})", GetFormattedValue(recepient, templateField));
                 }
                 smsList.Add(new DTO.SMSMessageDTO(){
                     ContractId= recepient.Contractid,

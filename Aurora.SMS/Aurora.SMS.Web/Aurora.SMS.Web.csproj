@@ -48,6 +48,14 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -194,6 +202,8 @@
     <Compile Include="Controllers\SmsHistoryController.cs" />
     <Compile Include="Models\SmsGateway\SmsGatewayProxyViewModel.cs" />
     <Compile Include="Models\SmsHistory\SmsHistoryViewModel.cs" />
+    <Compile Include="Models\SmsTemplate\SmsTemplateValidator.cs" />
+    <Compile Include="Models\SmsTemplate\SmsTemplateViewModel.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
@@ -289,6 +299,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\SmsGateWay\Change.js" />
     <Content Include="Scripts\SmsGateWay\smsGateWay.js" />
+    <Content Include="Scripts\SMSTemplate\CreateEdit.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\_references.js" />

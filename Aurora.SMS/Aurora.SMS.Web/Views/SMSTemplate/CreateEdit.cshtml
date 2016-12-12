@@ -1,4 +1,4 @@
-﻿@model Aurora.SMS.EFModel.Template
+﻿@model Aurora.SMS.Web.Models.SmsTemplate.SmsTemplateViewModel
 
 @{
     ViewBag.Title = "CreateEdit";
@@ -11,7 +11,7 @@
 
     <div class="col-md-6">
 
-        @using (Html.BeginForm("CreateEdit", "SMSTemplate"))
+        @using (Html.BeginForm("CreateEdit", "SMSTemplate",FormMethod.Post,htmlAttributes:new { id="formTemplate"}))
         {
             @Html.AntiForgeryToken()
 
@@ -41,7 +41,8 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Template Text</label>
                         <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.Text, new { htmlAttributes = new { @class = "form-control", style = "width:100%; height : 1300px" } })
+                            <div class="form-control" contenteditable="true" id="divTemplateText"></div>
+                            @Html.TextAreaFor(model => model.Text,htmlAttributes:  new { @class = "form-control hidden", id="textareaTemplateText" })
                             @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -74,3 +75,27 @@
 
 </div>
 
+@section scripts
+{
+    <style>
+        #divTemplateText {
+            height: 300px;
+            overflow-y:auto ;
+            max-width: 100%;
+            width:100%
+        }
+
+        .alert
+        {
+            padding:initial;
+            padding-left:4px;
+            padding-right:10px;
+            margin:2px;
+        }
+        .alert-dismissable .close, .alert-dismissible .close {
+                top: initial;
+                right: -4px;
+            }
+    </style>
+    <script type="text/javascript" src="~/Scripts/SMSTemplate/CreateEdit.js"></script>
+    }

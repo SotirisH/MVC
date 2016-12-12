@@ -11,6 +11,9 @@ using Aurora.SMS.EFModel;
 using Aurora.SMS.ServiceTests;
 using Aurora.Core.Data;
 using System.Data.Common;
+using System.Resources;
+using System.Reflection;
+using Aurora.SMS.ServiceTests.Properties;
 
 namespace Aurora.SMS.Service.Tests
 {
@@ -19,6 +22,9 @@ namespace Aurora.SMS.Service.Tests
     [TestClass()]
     public class SMSServicesTests
     {
+
+       
+
         [AssemblyInitialize()]
         public static void AssemblyInit(TestContext context)
         {
@@ -30,6 +36,7 @@ namespace Aurora.SMS.Service.Tests
         {
             var mockContext = new Mock<SMSDb>();
 
+           
 
             // create an empty history
             var smsHistoryList = new List<SMSHistory>();
@@ -41,19 +48,12 @@ namespace Aurora.SMS.Service.Tests
             mockContext.Setup(c => c.TemplateFields).Returns(mockTemplateFieldSet.Object);
             mockContext.Setup(m => m.Set<TemplateField>()).Returns(mockTemplateFieldSet.Object);
 
-
-
             // Set the template
             var template = new Template();
             template.Id = 100;
             template.Description = "MyTemplate";
             template.Name = "MyTemplate";
-            template.Text = @"Dear {LastName} {FirstName},
-                            your insurance with contract number:{ContractNumber} and Receipt:{ReceiptNumber} 
-                            that was issued at:{IssueDate}, starts:{StartDate}, expires:{ExpireDate} at the company {CompanyDescription}
-                            for the plate:{PlateNumber} has been issued. The amounts are:
-                            Gross:{GrossAmount}, Tax:{TaxAmount}, net:{NetAmount}.
-                            A hardcopy will be delivered at {Address} , {ZipCode}";
+            template.Text = Resources.mockTemplateString; 
 
             var templateList = new List<Template>() { template };
             var mockTemplateSet = EFHelper.GetQueryableMockDbSet(templateList);
@@ -113,12 +113,7 @@ namespace Aurora.SMS.Service.Tests
             template.Id = 100;
             template.Description = "MyTemplate";
             template.Name = "MyTemplate";
-            template.Text = @"Dear {LastName} {FirstName},
-                            your insurance with contract number:{ContractNumber} and Receipt:{ReceiptNumber} 
-                            that was issued at:{IssueDate}, starts:{StartDate}, expires:{ExpireDate} at the company {CompanyDescription}
-                            for the plate:{PlateNumber} has been issued. The amounts are:
-                            Gross:{GrossAmount}, Tax:{TaxAmount}, net:{NetAmount}.
-                            A hardcopy will be delivered at {Address} , {ZipCode}";
+            template.Text = Resources.mockTemplateString; 
 
             var templateList = new List<Template>() { template };
             var mockTemplateSet = EFHelper.GetQueryableMockDbSet(templateList);
@@ -172,12 +167,7 @@ namespace Aurora.SMS.Service.Tests
             template.Id = 100;
             template.Description = "MyTemplate";
             template.Name = "MyTemplate";
-            template.Text = @"Dear {LastName} {FirstName},
-                            your insurance with contract number:{ContractNumber} and Receipt:{ReceiptNumber} 
-                            that was issued at:{IssueDate}, starts:{StartDate}, expires:{ExpireDate} at the company {CompanyDescription}
-                            for the plate:{PlateNumber} has been issued. The amounts are:
-                            Gross:{GrossAmount}, Tax:{TaxAmount}, net:{NetAmount}.
-                            A hardcopy will be delivered at {Address} , {ZipCode}";
+            template.Text = Resources.mockTemplateString; 
 
             memDB.Templates.Add(template);
 
