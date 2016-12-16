@@ -8,7 +8,7 @@
     <p class="h4">Here you can create, modify or delete an SMS template</p>
     @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-primary btn-lg"})
 </div>
-
+ 
 
 
 <h2>Available templates</h2>
@@ -19,9 +19,15 @@
             <div class="list-group-item">
                 <h4 class="list-group-item-heading">@template.Name</h4>
                 <p class="list-group-item-text">@template.Description</p>
-                <div style="position:absolute;top:0;right:0;z-index:100;display:block">
-                    @Html.ActionLink("Edit", "Edit", new { id = template.Id })
-                    @Html.ActionLink("Delete", "Delete", new { id = template.Id })
+                <div style="position:absolute;top:4px;right:0;display:block">
+                    <!--http://stackoverflow.com/questions/26174013/asp-net-actionlink-with-glyphicon-and-text-with-different-font-->
+                    <!--see site.css to change the color of the glyphicon on hover-->  
+                    <a href="@Url.Action("Edit", "SMSTemplate", new { id = template.Id })" class="col-xs-6" data-toggle="tooltip" data-placement="top" data-original-title="Edit this template">
+                        <span class="glyphicon glyphicon-edit"  aria-hidden="true"></span>
+                    </a>
+                    <a href="@Url.Action("Delete", "SMSTemplate", new { id = template.Id })" class="col-xs-6" data-toggle="tooltip" data-placement="bottom" data-original-title="Delete this template">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
                 </div>
             </div>
         </div>

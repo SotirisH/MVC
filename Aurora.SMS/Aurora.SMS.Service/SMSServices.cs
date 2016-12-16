@@ -130,14 +130,14 @@ namespace Aurora.SMS.Service
                  * */
 
 
-                // Sample"CreateEdit&nbsp;<div class="alert alert-dismissible alert-success" contenteditable="false" style="display:inline-block"><button type="button" class="close" data-dismiss="alert">×</button><span>CompanyDescription</span></div>
-                //Step 1:HttpUtility.HtmlDecode
+                //Sample"CreateEdit&nbsp;<div class="alert alert-dismissible alert-success" contenteditable="false" style="display:inline-block"><button type="button" class="close" data-dismiss="alert">×</button><span>CompanyDescription</span></div>
+                // Decode the string using HttpUtility.HtmlDecode in order to replace htm elements such as
+                // &nbsp; with their real representaion
                 smsText = HttpUtility.HtmlDecode(smsText);
                 foreach (var templateField in templateFields)
                 {
                     var regExp = "<div class=\"alert alert-dismissible alert-success\" contenteditable=\"false\" style=\"display:inline-block\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><span>" + templateField.Name + "</span></div>";
                     smsText = Regex.Replace(smsText, regExp, GetFormattedValue(recepient, templateField));
-                    //smsText = Regex.Replace(smsText, "({" + templateField.Name + "})", GetFormattedValue(recepient, templateField));
                 }
                 smsList.Add(new DTO.SMSMessageDTO(){
                     ContractId= recepient.Contractid,

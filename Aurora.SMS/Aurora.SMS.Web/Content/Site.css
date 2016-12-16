@@ -20,4 +20,8 @@
 {
     display:block;
 }
- 
+
+a:hover .glyphicon{
+    color:orange;
+}
+
