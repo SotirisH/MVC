@@ -85,10 +85,21 @@ namespace Aurora.SMS.Web.Controllers
             int selectedTemplateId = SessionHelper.Current.SelectedTemplateId;
             var recepients = _insuranceServices.GetContracts(criteria);
             var previewMessages = _smsServices.ConstructSMSMessages(recepients, selectedTemplateId);
-            var sessionId = _smsServices.SendBulkSMS(previewMessages, "aurorafakeprovider");
+            var sessionId = _smsServices.SendBulkSMS(previewMessages, GetDefaultSmsGateWayCookie().Value);
             ViewBag.SessionId = sessionId;
             return View();
         }
 
+        private HttpCookie GetDefaultSmsGateWayCookie()
+        {
+            HttpCookie cookie = Request.Cookies["DefaultSmsGateWayName"];
+            if (cookie == null)
+            {
+                cookie = new HttpCookie("DefaultSmsGateWayName");
+                cookie.Expires = DateTime.MaxValue;
+                Request.Cookies.Set(cookie);
+            }
+            return cookie;
+        }
     }
 }

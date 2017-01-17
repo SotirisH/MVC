@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 namespace Aurora.Core.Data
 {
 
+    public interface IUnitOfWork
+    {
+        void Commit();
+    }
 
     /// <summary>
     ///  The service layer will be responsible to send a Commit command to the database through a IUnitOfWork injected instance. 
@@ -20,7 +24,6 @@ namespace Aurora.Core.Data
         /// The user name that that will be audited for all object changes
         /// </summary>
         string UserName { get; }
-
         void Commit();
         GenericRepository<TEntity, DB> GetGenericRepositoryOf<TEntity>() where TEntity : EntityBase;
     }

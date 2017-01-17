@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aurora.Core.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Aurora.SMS.Web.Models.SmsTemplate
 {
-    public class SmsTemplateViewModel: IValidatableObject
+    public class SmsTemplateViewModel: EntityBase, IValidatableObject
     {
         public int Id { get; set; }
         public string Name { get; set; }

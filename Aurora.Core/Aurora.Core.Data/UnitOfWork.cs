@@ -12,7 +12,7 @@ namespace Aurora.Core.Data
     /// The unit of work guarantees that all the repositories will use the same context(during a request)
     /// </summary>
     /// <typeparam name="DB"></typeparam>
-    public class UnitOfWork<DB> : IUnitOfWork<DB> where DB : DbContext, IAuditableDBContext, new() 
+    public class UnitOfWork<DB>  : IUnitOfWork, IUnitOfWork<DB> where DB : DbContext, IAuditableDBContext, new() 
     {
         /// <summary>
         /// The user name that modifies the object

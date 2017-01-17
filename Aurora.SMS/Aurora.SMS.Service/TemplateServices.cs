@@ -22,6 +22,7 @@ namespace Aurora.SMS.Service
         void CreateTemplate(EFModel.Template template);
         IEnumerable<EFModel.Template> GetAll();
         EFModel.Template GetById(int id);
+        
     }
 
     public class TemplateServices:  UnitOfWorkService<SMSDb>, ITemplateServices

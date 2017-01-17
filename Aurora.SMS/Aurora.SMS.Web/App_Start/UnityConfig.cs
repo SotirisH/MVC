@@ -49,13 +49,14 @@ namespace Aurora.SMS.Web.App_Start
             // container.LoadConfiguration();
 
             // NOTE: Register your types here
+            container.RegisterType<ICurrentUserService, CurrentUserService>(new PerRequestLifetimeManager());
+            container.RegisterType<DbFactory<Service.Data.SMSDb>, Service.Data.SMSDbFactory>(new PerRequestLifetimeManager());
             
-            container.RegisterInstance("userName", "TestUser");
+            //Register two interfaces as one singleton
+            container.RegisterType<UnitOfWork<Service.Data.SMSDb>, UnitOfWork<Service.Data.SMSDb>>(new PerRequestLifetimeManager());
+            container.RegisterType<IUnitOfWork<Service.Data.SMSDb>, UnitOfWork<Service.Data.SMSDb>>(new PerRequestLifetimeManager());
+            container.RegisterType<IUnitOfWork, UnitOfWork<Service.Data.SMSDb>>(new PerRequestLifetimeManager());
 
-
-            container.RegisterType<ICurrentUserService, CurrentUserService>();
-            container.RegisterType<DbFactory<Service.Data.SMSDb>, Service.Data.SMSDbFactory>();
-            container.RegisterType<IUnitOfWork<Service.Data.SMSDb>,UnitOfWork<Service.Data.SMSDb>>();
             container.RegisterType<Service.ITemplateServices, Service.TemplateServices>();
             container.RegisterType<Service.ITemplateFieldServices, Service.TemplateFieldServices>();
             container.RegisterType<Service.IInsuranceServices, Service.InsuranceServices>();

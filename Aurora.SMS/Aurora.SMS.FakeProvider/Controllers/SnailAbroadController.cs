@@ -33,7 +33,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
 
         public virtual void ApplyDelay()
         {
-           Thread.Sleep(1500);
+           Thread.Sleep(2000);
         }
 
         /// <summary>

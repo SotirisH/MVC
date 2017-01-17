@@ -136,7 +136,8 @@ namespace Aurora.SMS.Service
                 smsText = HttpUtility.HtmlDecode(smsText);
                 foreach (var templateField in templateFields)
                 {
-                    var regExp = "<div class=\"alert alert-dismissible alert-success\" contenteditable=\"false\" style=\"display:inline-block\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><span>" + templateField.Name + "</span></div>";
+                    var regExp = "<div class=\"alert alert-dismissible alert-success\" contenteditable=\"false\" style=\"display:inline-block\"><button type=\"button\" class=\"close\" alert-dismiss=\"alert\">×</button><span>" + templateField.Name + "</span></div>";
+                        //"<div class=\"alert alert-dismissible alert-success\" contenteditable=\"false\" style=\"display:inline-block\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><span>" + templateField.Name + "</span></div>";
                     smsText = Regex.Replace(smsText, regExp, GetFormattedValue(recepient, templateField));
                 }
                 smsList.Add(new DTO.SMSMessageDTO(){
