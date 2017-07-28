@@ -35,20 +35,21 @@ namespace Aurora.SMS.Service
     }
 
 
-    public class SMSServices : UnitOfWorkService<SMSDb>, ISMSServices
+    public class SMSServices : DbServiceBase<SMSDb>, ISMSServices
     {
         // TODO:Create a generic repository
         private readonly GenericRepository<Template, SMSDb> _templateRepository;
         private readonly GenericRepository<TemplateField, SMSDb> _templatefieldsRepository;
         private readonly GenericRepository<Provider, SMSDb> _providerRepository;
         private readonly GenericRepository<SMSHistory, SMSDb> _smsHistoryRepository;
+        private readonly GenericRepository<SMSHistory, SMSDb> _uoW;
 
-        public SMSServices(IUnitOfWork<SMSDb> unitOfWork):base(unitOfWork)
+        public SMSServices(IUnitOfWork<SMSDb> uoW) :base(uoW)
         {
-            _templateRepository = unitOfWork.GetGenericRepositoryOf<Template>();
-            _templatefieldsRepository = unitOfWork.GetGenericRepositoryOf<TemplateField>();
-            _providerRepository = unitOfWork.GetGenericRepositoryOf<Provider>();
-            _smsHistoryRepository = unitOfWork.GetGenericRepositoryOf<SMSHistory>();
+            _templateRepository = uoW.DbFactory.GetGenericRepositoryOf<Template>();
+            _templatefieldsRepository = uoW.DbFactory.GetGenericRepositoryOf<TemplateField>();
+            _providerRepository = uoW.DbFactory.GetGenericRepositoryOf<Provider>();
+            _smsHistoryRepository = uoW.DbFactory.GetGenericRepositoryOf<SMSHistory>();
         }
 
         /// <summary>
@@ -85,19 +86,19 @@ namespace Aurora.SMS.Service
                 
                 _smsHistoryRepository.Add(smsHistory);
             }
-            _unitOfWork.Commit();
+            UoW.Commit();
 
             List<Task> serverRequests = new List<Task>();
             // TODO:Need to abstract the ClientProviderFactory
             var smsProviderProxy = ClientProviderFactory.CreateClient(providerName, provider.UserName, provider.PassWord);
             //LINQ to Entities does not recognize the method 'Boolean IsNullOrWhiteSpace(System.String)'                  
             //http://stackoverflow.com/questions/9606979/string-isnullorwhitespace-in-linq-expression
-            foreach (var historysms in _unitOfWork.DbContext.SMSHistoryRecords.Where(m=> (m.SessionId== sessionId) && (m.MobileNumber!=null) && m.MobileNumber.Trim()!=string.Empty).ToArray())
+            foreach (var historysms in DbContext.SMSHistoryRecords.Where(m=> (m.SessionId== sessionId) && (m.MobileNumber!=null) && m.MobileNumber.Trim()!=string.Empty).ToArray())
             {
                 serverRequests.Add( SendSMSToProvider(smsProviderProxy, provider, historysms));
             }
             Task.WaitAll(serverRequests.ToArray());
-            _unitOfWork.Commit();
+            UoW.Commit();
             return sessionId;
         }
 
@@ -245,7 +246,7 @@ namespace Aurora.SMS.Service
         public void SaveProxy(Provider smsProxy)
         {
             _providerRepository.Update(smsProxy);
-            _unitOfWork.Commit();
+            UoW.Commit();
         }
     }
 }

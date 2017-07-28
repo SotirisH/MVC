@@ -25,19 +25,18 @@ namespace Aurora.SMS.Service
         
     }
 
-    public class TemplateServices:  UnitOfWorkService<SMSDb>, ITemplateServices
+    public class TemplateServices: DbServiceBase<SMSDb>, ITemplateServices
     {
         private readonly GenericRepository<EFModel.Template, SMSDb> _templateRepository;
         
-        public TemplateServices(IUnitOfWork<SMSDb> unitOfWork):base(unitOfWork)
+        public TemplateServices(DbFactory<SMSDb> dbFactory):base(dbFactory)
         {
-            _templateRepository = _unitOfWork.GetGenericRepositoryOf<EFModel.Template>();
+            _templateRepository = dbFactory.GetGenericRepositoryOf<EFModel.Template>();
         }
 
         public void CreateTemplate(EFModel.Template template)
         {
             _templateRepository.Add(template);
-            _unitOfWork.Commit();
         }
 
         public void DeleteTemplate(int templateId)

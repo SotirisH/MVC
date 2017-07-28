@@ -29,11 +29,7 @@ namespace Aurora.Core.Data
             private set;
         }
 
-        protected DB DbContext
-        {
-            get { return DbFactory.DBContext(); }
-        }
-
+        protected DB DbContext => DbFactory.DBContext;
 
         public GenericRepository(DbFactory<DB> dbFactory)
         {

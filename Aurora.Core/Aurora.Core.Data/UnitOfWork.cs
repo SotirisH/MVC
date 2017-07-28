@@ -12,7 +12,7 @@ namespace Aurora.Core.Data
     /// The unit of work guarantees that all the repositories will use the same context(during a request)
     /// </summary>
     /// <typeparam name="DB"></typeparam>
-    public class UnitOfWork<DB>  : IUnitOfWork, IUnitOfWork<DB> where DB : DbContext, IAuditableDBContext, new() 
+    public class UnitOfWork<DB>  : IUnitOfWork<DB> where DB : DbContext, IAuditableDBContext, new() 
     {
         /// <summary>
         /// The user name that modifies the object
@@ -30,62 +30,17 @@ namespace Aurora.Core.Data
         public UnitOfWork(DbFactory<DB> dbFactory,
                         ICurrentUserService currentUserService)
         {
-            if (dbFactory == null)
-            {
-                throw new ArgumentNullException("dbFactory", "The 'dbFactory' parameter cannot be null!");
-            }
-            if (currentUserService==null)
-            {
-                throw new ArgumentNullException("currentUserService", "The 'currentUserService' parameter cannot be null!");
-            }
-
-            _currentUserService = currentUserService;
-            _dbFactory = dbFactory;
+            _currentUserService = currentUserService ?? throw new ArgumentNullException("currentUserService", "The 'currentUserService' parameter cannot be null!");
+            _dbFactory = dbFactory ?? throw new ArgumentNullException("dbFactory", "The 'dbFactory' parameter cannot be null!");
         }
 
-        public DB DbContext
-        {
-            get { return _dbFactory.DBContext(); }
-        }
-   
-        public string UserName
-        {
-            get
-            {
-                return _currentUserService.GetCurrentUser();
-            }
-        }
+        public DB DbContext => _dbFactory.DBContext;
+        public DbFactory<DB> DbFactory => _dbFactory;
 
-        internal DbFactory<DB> DbFactory
-        {
-            get { return _dbFactory; }
-        }
+        public string UserName => _currentUserService.GetCurrentUser();
 
-        public void Commit()
-        {
-            DbContext.SaveChanges(UserName);
-        }
-
-        public Task<int> CommitAsync()
-        {
-            return DbContext.SaveChangesAsync();
-        }
-
-        public Dictionary<Type, object> repositories = new Dictionary<Type, object>();
-        /// <summary>
-        /// Returns a generic repository from the dictionary and if does not exits then it creates one
-        /// </summary>
-        public GenericRepository<TEntity, DB> GetGenericRepositoryOf<TEntity>() where TEntity : EntityBase
-        {
-            if (repositories.Keys.Contains(typeof(TEntity)) == true)
-            {
-                return repositories[typeof(TEntity)] as GenericRepository<TEntity, DB>;
-            }
-            IRepository<TEntity> r = new GenericRepository<TEntity,DB>(_dbFactory);
-            repositories.Add(typeof(TEntity), r);
-            return r as GenericRepository<TEntity, DB>;
-        }
-
+        public void Commit() => DbContext.SaveChanges(UserName);
+        public Task<int> CommitAsync() => DbContext.SaveChangesAsync();
 
     }
 }

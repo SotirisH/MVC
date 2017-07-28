@@ -70,7 +70,7 @@ namespace Aurora.SMS.Service.Tests
 
             // Mocking up dbFactory
             var mockdbFactory = new Mock<DbFactory<SMSDb>>();
-            mockdbFactory.Setup(m => m.Init()).Returns(mockContext.Object);
+            mockdbFactory.Setup(m => m.DBContext).Returns(mockContext.Object);
             IUnitOfWork<SMSDb> UoW = new UnitOfWork<SMSDb>(mockdbFactory.Object, mockICurrentUserService.Object);
 
             var target = new SMSServices(UoW);
@@ -91,7 +91,7 @@ namespace Aurora.SMS.Service.Tests
             var mockContext = Mock.Get(smsDB);
             // Mocking up dbFactory
             var mockdbFactory = new Mock<DbFactory<SMSDb>>();
-            mockdbFactory.Setup(m => m.Init()).Returns(mockContext.Object);
+            mockdbFactory.Setup(m => m.DBContext).Returns(mockContext.Object);
             IUnitOfWork<SMSDb> UoW = new UnitOfWork<SMSDb>(mockdbFactory.Object, mockICurrentUserService.Object);
 
 
@@ -159,7 +159,7 @@ namespace Aurora.SMS.Service.Tests
 
             // Mocking up dbFactory
             var mockdbFactory = new Mock<DbFactory<SMSDb>>();
-            mockdbFactory.Setup(m => m.Init()).Returns(memDB);
+            mockdbFactory.Setup(m => m.DBContext).Returns(memDB);
             IUnitOfWork<SMSDb> UoW = new UnitOfWork<SMSDb>(mockdbFactory.Object, mockICurrentUserService.Object);
 
             // Set the template
