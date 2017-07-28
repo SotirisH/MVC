@@ -1,5 +1,5 @@
 ﻿/// <reference path="../jquery-1.12.1.js" />
-/// <reference path="~/SMSTemplate/CreateEdit.cshtml" />
+
  
 
 

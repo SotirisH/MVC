@@ -15,6 +15,9 @@ $(".pill").click(function(){
 
 function postToController(element, postUrl, captionHeaderMsg)
 {
+    //How can I get form data with JavaScript/jQuery?
+    //http://stackoverflow.com/questions/2276463/how-can-i-get-form-data-with-javascript-jquery
+
     //event.target always refers to the element that triggered the event
     var currentform = element.form;
     var formdata = $(currentform).serializeArray();
@@ -60,8 +63,6 @@ function postToController(element, postUrl, captionHeaderMsg)
 }
 
 
-//How can I get form data with JavaScript/jQuery?
-//http://stackoverflow.com/questions/2276463/how-can-i-get-form-data-with-javascript-jquery
 $(".buttonSave").click(function () {
     return postToController(this, "/SmsGateWay/Save", "Save Success!");
 });

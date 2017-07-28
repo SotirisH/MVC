@@ -9,6 +9,26 @@
 
 </head>
 <body>
+    <!-- Modal -->
+    <div id="divProgressModalWindow" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalTitle">Querying for data...</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="divProgressBarResults" class="progress" style="height:20px;vertical-align:middle">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -30,6 +50,16 @@
     </div>
     <div class="clearfix"></div>
     <div class="container body-content">
+        <div id="customAlertBox" class="row alert alert-danger alert-dismissable" style="position:fixed;right:0;margin:12px;display:none;z-index:9999;max-width:800px;">
+            <button type="button" class="close" title="Close" onclick="$('.alert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <i id="collapseIcon" class="fa fa-compress pull-right" data-toggle="collapse" data-target="#divcollapseError" title="Collapse/Expand" style="cursor:pointer;"></i>
+            <i id="iconInfo" class="fa fa-2x fa-fw" aria-hidden="true" style="float:left;" title="On or more error occured!"></i>
+            <div class="collapse in" id="divcollapseError">
+                <strong id="msgHeader">The following errors have occured:</strong>
+                <label id="labelMsg" style="overflow-y:auto;overflow:auto;max-height:80vh"></label>
+            </div>
+        </div>
+
         @RenderBody()
         <hr />
         <footer>
