@@ -12,7 +12,7 @@ namespace Aurora.Core.Data
     /// Factory responsible for managing the instance of DbContext.
     /// Supports Init and dispose funtionality and also can generate Generic repositories
     /// </summary>
-    public abstract class DbFactory<DB> : Disposable where DB : DbContext , IAuditableDBContext ,new()
+    public abstract class DbFactory<DB> : Disposable where DB : DbContext, IAuditableDBContext, new()
     {
         internal DB dbContext;
         /// <summary>
@@ -22,7 +22,17 @@ namespace Aurora.Core.Data
         /// <remarks> The DBContext life time should be request, so in the very first time the object is created and
         /// then the same instance is used during the request(Kind of signleton pattern)
         /// </remarks>
-        public virtual DB DBContext => dbContext?? Init();
+        public virtual DB DBContext
+        {
+            get
+            {
+                if (dbContext == null)
+                {
+                    dbContext = Init();
+                }
+                return dbContext;
+            }
+        }   
          
 
         protected override void DisposeCore()

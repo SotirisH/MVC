@@ -95,8 +95,18 @@ namespace Aurora.SMS.Service
             //http://stackoverflow.com/questions/9606979/string-isnullorwhitespace-in-linq-expression
             foreach (var historysms in DbContext.SMSHistoryRecords.Where(m=> (m.SessionId== sessionId) && (m.MobileNumber!=null) && m.MobileNumber.Trim()!=string.Empty).ToArray())
             {
-                serverRequests.Add( SendSMSToProvider(smsProviderProxy, provider, historysms));
+                // Collect all tasks in an array
+                serverRequests.Add(SendSMSToProvider(smsProviderProxy, provider, historysms));
+
             }
+            //foreach (var task in await Task.WhenAll(tasks))
+            //{
+            //    if (task.Item2)
+            //    {
+            //        Console.WriteLine("Ending Process {0}", task.Item1);
+            //    }
+            //}
+
             Task.WaitAll(serverRequests.ToArray());
             UoW.Commit();
             return sessionId;
@@ -177,6 +187,7 @@ namespace Aurora.SMS.Service
                                                     smsHistory.Message,
                                                     null,
                                                     null).ConfigureAwait(false);
+            // when a task finish the history record is updated
             smsHistory.ProviderFeedback = result.ReturnedMessage;
             smsHistory.ProviderFeedBackDateTime = result.TimeStamp;
             smsHistory.ProviderMsgId = result.ProviderId;

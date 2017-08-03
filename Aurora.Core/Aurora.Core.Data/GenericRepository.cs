@@ -48,7 +48,7 @@ namespace Aurora.Core.Data
         {
             // if the entities have been loaded, i cannot attach the modified entity
             // https://cmatskas.com/an-object-with-the-same-key-already-exists-in-the-objectstatemanager-entity-frawework/
-
+            
             var entry = DbContext.Entry(entity);
 
             var key = GetPrimaryKey(entry);
