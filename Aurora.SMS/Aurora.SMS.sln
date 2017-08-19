@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.EFModel", "Aurora.SMS.EFModel\Aurora.SMS.EFModel.csproj", "{ACC24B1F-B706-4B15-95CA-8639E3956E53}"
 EndProject
@@ -28,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.Common", "Aurora.SMS.Common\Aurora.SMS.Common.csproj", "{D0F7B5F4-923A-4D94-8522-4C2AAD1A25AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.Web", "Aurora.SMS.Web\Aurora.SMS.Web.csproj", "{0B266BC0-5853-4578-A79C-F12BDA967A7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.Insurance.Services.Test", "..\Aurora.Insurance\Aurora.Insurance.Services.Test\Aurora.Insurance.Services.Test.csproj", "{7FF4A357-FC16-44B4-ACC9-E646D9BFCFAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{0B266BC0-5853-4578-A79C-F12BDA967A7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B266BC0-5853-4578-A79C-F12BDA967A7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B266BC0-5853-4578-A79C-F12BDA967A7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FF4A357-FC16-44B4-ACC9-E646D9BFCFAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FF4A357-FC16-44B4-ACC9-E646D9BFCFAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FF4A357-FC16-44B4-ACC9-E646D9BFCFAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FF4A357-FC16-44B4-ACC9-E646D9BFCFAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,5 +94,9 @@ Global
 		{77A1EAAB-C06A-49AB-A57A-1FEA9FAE3EE3} = {FCA3B7C0-7991-414B-A450-D366A454689B}
 		{5467BB38-047C-45C7-9FED-6B8E19D4EA05} = {2446608B-0D56-4C2C-B600-2AC264A60AE8}
 		{92977B98-FF5D-46E0-A311-3847AE923388} = {2446608B-0D56-4C2C-B600-2AC264A60AE8}
+		{7FF4A357-FC16-44B4-ACC9-E646D9BFCFAB} = {FCA3B7C0-7991-414B-A450-D366A454689B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35554480-B2E7-4054-BA46-A7E5023DD7D0}
 	EndGlobalSection
 EndGlobal

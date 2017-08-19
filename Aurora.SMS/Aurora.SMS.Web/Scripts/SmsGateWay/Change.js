@@ -1,6 +1,6 @@
-﻿/// <reference path="../jquery-1.12.1.js" />
+﻿/// <reference path="../jquery-2.2.4.js" />
 /// <reference path="../underscore.js" />
-/// <reference path="~/Views/SmsGateWay/Change.cshtml" />
+
 
 function HideAllAlerts()
 {

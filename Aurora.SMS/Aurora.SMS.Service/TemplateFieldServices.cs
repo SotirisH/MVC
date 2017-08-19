@@ -30,7 +30,7 @@ namespace Aurora.SMS.Service
 
         public IEnumerable<EFModel.TemplateField> GetAllTemplateFields()
         {
-            return _templateFieldRepository.GetAsQueryable().OrderBy(x => x.GroupName).OrderBy(x => x.Name).ToArray();
+            return _templateFieldRepository.GetAsQueryable().OrderBy(x => x.GroupName).ThenBy(x => x.Name).ToArray();
         }
     }
 }
