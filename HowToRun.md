@@ -1,6 +1,8 @@
 In order too run the project yo have to do only two things
-1)Modify the connection strings to point to your server int the web.config
+- Modify the connection strings to point to your server int the web.config
     <add name="SMSDb" connectionString="Data Source=.\SQL16;Initial Catalog=SMSDb;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" providerName="System.Data.SqlClient" />
     <add name="InsuranceDb" providerName="System.Data.SqlClient" connectionString="Data Source=.\sql16;Initial Catalog=Insurance;Integrated Security=True;" />
-2)Change the provider and set it default to "snailabroad". On save you should get "Save Success!
+- Change the provider and set it default to "snailabroad". On save you should get "Save Success!
 Your available credits are:1000"
+
+Note: When you create give a range on issue date a past month of 2017
