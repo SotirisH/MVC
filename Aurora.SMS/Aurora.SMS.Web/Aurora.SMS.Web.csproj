@@ -199,6 +199,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\SmsHistoryController.cs" />
+    <Compile Include="Migrations\201708192340504_Init.cs" />
+    <Compile Include="Migrations\201708192340504_Init.Designer.cs">
+      <DependentUpon>201708192340504_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SmsGateway\SmsGatewayProxyViewModel.cs" />
     <Compile Include="Models\SmsHistory\SmsHistoryViewModel.cs" />
     <Compile Include="Models\SmsTemplate\SmsTemplateValidator.cs" />
@@ -288,6 +293,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Migrations\Init.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\JavaScript.js" />
@@ -411,6 +419,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708192340504_Init.resx">
+      <DependentUpon>201708192340504_Init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
