@@ -29,6 +29,7 @@ Note: The main solution is the Aurora.SMS.sln
   - WebAPi
   - MVC Controlers
   - EF
+  - EF Fluent API EntityTypeConfiguration
 
 ## References
 - Basic writing and formatting syntax for [GitHub](https://help.github.com/articles/basic-writing-and-formatting-syntax/)
