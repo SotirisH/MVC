@@ -92,11 +92,12 @@ namespace Aurora.SMS.Web.Controllers
 
         private HttpCookie GetDefaultSmsGateWayCookie()
         {
-            HttpCookie cookie = Request.Cookies["DefaultSmsGateWayName"];
+            HttpCookie cookie = Request.Cookies["DefaultSmsGateWayName45"];
             if (cookie == null)
             {
-                cookie = new HttpCookie("DefaultSmsGateWayName");
+                cookie = new HttpCookie("DefaultSmsGateWayName45");
                 cookie.Expires = DateTime.MaxValue;
+                cookie.Value = "SnailAbroad";
                 Request.Cookies.Set(cookie);
             }
             return cookie;

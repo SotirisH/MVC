@@ -24,7 +24,7 @@ namespace Aurora.SMS.Web.Controllers
             var smsProxies = _smsServices.GetAllProviders();
             var cookie = GetDefaultSmsGateWayCookie();
             var smsDefaultGateWayName = cookie.Value;
-            // if the DefaultSmsGateWayName has not been set the the first item is set as the DefaultSmsGateWayName
+            // if the DefaultSmsGateWayName45 has not been set the the first item is set as the DefaultSmsGateWayName45
             if (string.IsNullOrWhiteSpace(smsDefaultGateWayName))
             {
                 if (smsProxies.Any())
@@ -66,7 +66,7 @@ namespace Aurora.SMS.Web.Controllers
         public RedirectToRouteResult SetDefault(FormCollection model)
         {
             // Update cookie
-            var cookie = Response.Cookies["DefaultSmsGateWayName"];
+            var cookie = Response.Cookies["DefaultSmsGateWayName45"];
             cookie.Value = model["proxyname"];
             Response.Cookies.Set(cookie);
             return RedirectToAction("Change");
@@ -127,11 +127,12 @@ namespace Aurora.SMS.Web.Controllers
         /// <returns></returns>
         private HttpCookie GetDefaultSmsGateWayCookie()
         {
-            HttpCookie cookie= Request.Cookies["DefaultSmsGateWayName"];
+            HttpCookie cookie= Request.Cookies["DefaultSmsGateWayName45"];
             if (cookie==null)
             {
-                cookie = new HttpCookie("DefaultSmsGateWayName");
+                cookie = new HttpCookie("DefaultSmsGateWayName45");
                 cookie.Expires = DateTime.MaxValue;
+                cookie.Value = "SnailAbroad";
                 Request.Cookies.Set(cookie);
             }
             return cookie;
