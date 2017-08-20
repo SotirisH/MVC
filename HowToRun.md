@@ -4,3 +4,5 @@ In order too run the project yo have to do only two things
     <add name="InsuranceDb" providerName="System.Data.SqlClient" connectionString="Data Source=.\sql16;Initial Catalog=Insurance;Integrated Security=True;" />
 2)Change the provider and set it default to "snailabroad". On save you should get "Save Success!
 Your available credits are:1000"
+
+Note: When you create give a range on issue date a past month of 2017
