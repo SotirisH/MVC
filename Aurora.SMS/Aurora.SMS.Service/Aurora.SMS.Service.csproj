@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapperServicesProfile.cs" />
     <Compile Include="Data\Configurations.cs" />
     <Compile Include="Data\SMSDbFactory.cs" />
     <Compile Include="DTO\SmsHistoryCriteriaDTO.cs" />
