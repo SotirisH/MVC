@@ -5,8 +5,11 @@ The solution was inspired from Christo's Sakellarios blog "ASP.NET MVC Solution 
 https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices/ and has been extended to use a more generic version of it
 
 An overview of the application can been seen on the file "SMS Diagram" and can be opened by the web tool www.draw.io
-
 Note: The main solution is the Aurora.SMS.sln
+
+### Update 21 Aug 2017
+As the [ASP.NET Core 2.0](https://blogs.msdn.microsoft.com/webdev/2017/08/14/announcing-asp-net-core-2-0/) has been officially announced, i will continue only the [Core version](https://github.com/SotirisH/Aurora-SMS-Core) of this project from now and on. I believe that now the Core is mature enough, there are adequate resources on the internet to solve any of your problems and the documentation is well written. Bye-bye asp.Net, goodmorning ASP.Net Core
+
 ## Overview - Core bussiness requirement
 Primary reqirement:An insurance agent wants to notify all his customers when their contracts' are near to expire via SMS. 
 Also he wants to notify them when a contract state has been changed like renewed, modified or canceled. The user wants to create SMS templates, select the contracts and send an SMS for every contract by using an SMS template. Last he wants to see the history record for the SMS that he has sent and check its status (delivered or not)
