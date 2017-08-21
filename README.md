@@ -43,7 +43,7 @@ Also he wants to notify them when a contract state has been changed like renewed
 
 ## Food for thought
 - [Is the Repository pattern useful with Entity Framework?](http://www.thereformedprogrammer.net/is-the-repository-pattern-useful-with-entity-framework/) I've had also this argument in my mind for long time. I decided not to use repositories on my .net Core reimplementation as the dbcontext can use a memory provider and the SQL Lite memory provider for testing
-
+- [Managing DbContext the right way with Entity Framework 6: an in-depth guide] (http://mehdi.me/ambient-dbcontext-in-ef6/) Must Read!
 ## Notes
 - Calling a post method using HttpClient, a strange 404 occured. See my remarks at Aurora.SMS.FakeProvider.Controllers.TestPost
 - [Generic Repository and Unit of Work Pattern, Entity Framework, Unit Testing, Autofac IoC Container and ASP.NET MVC](http://techbrij.com/unit-testing-asp-net-mvc-controller-service)
