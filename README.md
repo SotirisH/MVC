@@ -1,12 +1,15 @@
 # MVC
 This is a demo project to explore the best practices in MVC. 
+
 The solution was inspired from Christo's Sakellarios blog "ASP.NET MVC Solution Architecture – Best Practice"
-https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices/
+https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices/ and has been extended to use a more generic version of it
 
 An overview of the application can been seen on the file "SMS Diagram" and can be opened by the web tool www.draw.io
-My LinkedIn profile:https://www.linkedin.com/in/sotiris-soto-hatzis-4a578a100
 
 Note: The main solution is the Aurora.SMS.sln
+## Overview - Core bussiness requirement
+Primary reqirement:An insurance agent wants to notify all his customers when their contracts' are near to expire via SMS. 
+Also he wants to notify them when a contract state has been changed like renewed, modified or canceled. The user wants to create SMS templates, select the contracts and send an SMS for every contract by using an SMS template. Last he wants to see the history record for the SMS that he has sent and check its status (delivered or not)
 
 ## Technologies & frameworks used:
 - MVC 5
@@ -40,3 +43,6 @@ Note: The main solution is the Aurora.SMS.sln
 ## Notes
 - Calling a post method using HttpClient, a strange 404 occured. See my remarks at Aurora.SMS.FakeProvider.Controllers.TestPost
 - [Generic Repository and Unit of Work Pattern, Entity Framework, Unit Testing, Autofac IoC Container and ASP.NET MVC](http://techbrij.com/unit-testing-asp-net-mvc-controller-service)
+
+
+My LinkedIn profile:https://www.linkedin.com/in/sotiris-soto-hatzis-4a578a100
