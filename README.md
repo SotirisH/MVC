@@ -15,11 +15,12 @@ Also he wants to notify them when a contract state has been changed like renewed
 - MVC 5
 - Web API
 - EF 6
-- Bogus
+- [Bogus - fake data generator](https://github.com/bchavez/Bogus)
 - Automapper
 - Moq
 - [Fluent Validation](https://chsakell.com/2015/01/17/web-api-powerful-custom-model-validation-with-fluentvalidation/)
 - Memory EF
+- [Predicate builder & expresion trees] (http://www.albahari.com/nutshell/predicatebuilder.aspx)
 
 
 ## Architecture & concepts
