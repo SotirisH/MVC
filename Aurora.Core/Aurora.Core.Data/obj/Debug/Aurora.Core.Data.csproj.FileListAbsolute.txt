@@ -18,3 +18,4 @@ C:\Git2\MVC\Aurora.Core\Aurora.Core.Data\obj\Debug\Aurora.Core.Data.dll
 C:\Git2\MVC\Aurora.Core\Aurora.Core.Data\obj\Debug\Aurora.Core.Data.pdb
 C:\Git2\MVC\Aurora.Core\Aurora.Core.Data\obj\Debug\Aurora.Core.Data.csprojResolveAssemblyReference.cache
 I:\GitRepo\MVC\Aurora.Core\Aurora.Core.Data\obj\Debug\Aurora.Core.Data.csproj.CoreCompileInputs.cache
+I:\GitRepo\MVC\Aurora.Core\Aurora.Core.Data\obj\Debug\Aurora.Core.Data.csprojResolveAssemblyReference.cache
