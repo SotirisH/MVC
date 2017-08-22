@@ -1,9 +1,12 @@
 ﻿using Aurora.Insurance.Services;
 using Aurora.SMS.Web.App_Start;
+using Aurora.SMS.Web.Areas.Api;
 using AutoMapper;
+using FluentValidation.Mvc;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -30,14 +33,24 @@ namespace Aurora.SMS.Web
                 dbMigrator2.Update();
             }
 
+            // Register Web API routing support before anything else
+
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+
+
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile<AutoMapperWebProfile>();
+                cfg.AddProfile<AutoMapperApiProfile>();
             });
+
+
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            FluentValidationModelValidatorProvider.Configure();
         }
     }
 }

@@ -28,10 +28,15 @@ namespace Aurora.Core.Data
         /// <param name="currentUserService">A service that will return the name of the user that will be used to audit
         /// all the objects of type 'EntityBase'. Usually the implementation should be HttpContext.Current.User.Identity.Name </param>
         public UnitOfWork(DbFactory<DB> dbFactory,
-                        ICurrentUserService currentUserService)
+                        ICurrentUserService dbFactorycurrentUserService)
         {
-            _currentUserService = currentUserService ?? throw new ArgumentNullException("currentUserService", "The 'currentUserService' parameter cannot be null!");
-            _dbFactory = dbFactory ?? throw new ArgumentNullException("dbFactory", "The 'dbFactory' parameter cannot be null!");
+            if (dbFactorycurrentUserService == null)
+                throw new ArgumentNullException("dbFactorycurrentUserService", "The 'currentUserService' parameter cannot be null!");
+            if (dbFactory == null)
+                throw new ArgumentNullException("dbFactory", "The 'dbFactory' parameter cannot be null!");
+
+            _currentUserService = dbFactorycurrentUserService;
+            _dbFactory = dbFactory;
         }
 
         public DB DbContext => _dbFactory.DBContext;

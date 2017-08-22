@@ -5,4 +5,6 @@ In order too run the project yo have to do only two things
 - Change the provider and set it default to "snailabroad". On save you should get "Save Success!
 Your available credits are:1000"
 
-Note: When you create give a range on issue date a past month of 2017
+## Notes
+- When you run the very first time the database is being populate with a lot of random data and takes some time, around 2-3 minutes. Be patient
+- When you create give a range on issue date a past month of 2017

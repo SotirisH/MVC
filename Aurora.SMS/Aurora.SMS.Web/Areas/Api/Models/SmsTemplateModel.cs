@@ -1,16 +1,11 @@
-﻿using Aurora.Core.Data;
-using Aurora.SMS.Modeling.Interfaces;
-using Aurora.SMS.Modeling.Validators;
+﻿using Aurora.SMS.Modeling.Validators;
 using FluentValidation.Attributes;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web.Mvc;
 
-namespace Aurora.SMS.Web.Models.SmsTemplate
+namespace Aurora.SMS.Web.Areas.Api.Models
 {
     [Validator(typeof(SmsTemplateValidator))]
-    public class SmsTemplateViewModel : EntityBase, ISmsTemplateModel, IValidatableObject
+    public class SmsTemplateModel : EntityBaseModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -22,7 +17,6 @@ namespace Aurora.SMS.Web.Models.SmsTemplate
         /// The property is decorated with the AllowHtml Attribute in order to avoid
         /// the Exception:A potentially dangerous Request.Form value was detected from the client
         /// </remarks>
-        [AllowHtml]
         public string Text { get; set; }
         /// <summary>
         /// The template object is semi-immutable.
@@ -31,11 +25,5 @@ namespace Aurora.SMS.Web.Models.SmsTemplate
         /// </summary>
         public bool IsInactive { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            var validator = new SmsTemplateValidator();
-            var result = validator.Validate(this);
-            return result.Errors.Select(item => new ValidationResult(item.ErrorMessage, new[] { item.PropertyName }));
-        }
     }
 }

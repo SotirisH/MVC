@@ -1,0 +1,1 @@
+﻿This project contains shared validations for EfModels,ViewModel and API models

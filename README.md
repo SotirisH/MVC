@@ -1,22 +1,29 @@
 # MVC
 This is a demo project to explore the best practices in MVC. 
+
 The solution was inspired from Christo's Sakellarios blog "ASP.NET MVC Solution Architecture – Best Practice"
-https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices/
+https://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices/ and has been extended to use a more generic version of it
 
 An overview of the application can been seen on the file "SMS Diagram" and can be opened by the web tool www.draw.io
-My LinkedIn profile:https://www.linkedin.com/in/sotiris-soto-hatzis-4a578a100
-
 Note: The main solution is the Aurora.SMS.sln
+
+### Update 21 Aug 2017
+As the [ASP.NET Core 2.0](https://blogs.msdn.microsoft.com/webdev/2017/08/14/announcing-asp-net-core-2-0/) has been officially announced, i will continue only the [Core version](https://github.com/SotirisH/Aurora-SMS-Core) of this project from now and on. I believe that now the Core is mature enough, there are adequate resources on the internet to solve any of your problems and the documentation is well written. Bye-bye asp.Net, goodmorning ASP.Net Core
+
+## Overview - Core bussiness requirement
+Primary reqirement:An insurance agent wants to notify all his customers when their contracts' are near to expire via SMS. 
+Also he wants to notify them when a contract state has been changed like renewed, modified or canceled. The user wants to create SMS templates, select the contracts and send an SMS for every contract by using an SMS template. Last he wants to see the history record for the SMS that he has sent and check its status (delivered or not)
 
 ## Technologies & frameworks used:
 - MVC 5
 - Web API
 - EF 6
-- Bogus
+- [Bogus - fake data generator](https://github.com/bchavez/Bogus)
 - Automapper
 - Moq
 - [Fluent Validation](https://chsakell.com/2015/01/17/web-api-powerful-custom-model-validation-with-fluentvalidation/)
 - Memory EF
+- [Predicate builder & expresion trees](http://www.albahari.com/nutshell/predicatebuilder.aspx)
 
 
 ## Architecture & concepts
@@ -29,6 +36,7 @@ Note: The main solution is the Aurora.SMS.sln
   - WebAPi
   - MVC Controlers
   - EF
+  - EF Fluent API EntityTypeConfiguration
 
 ## References
 - Basic writing and formatting syntax for [GitHub](https://help.github.com/articles/basic-writing-and-formatting-syntax/)
@@ -36,6 +44,12 @@ Note: The main solution is the Aurora.SMS.sln
 - [Create ForeignKey using fluent API on Property](http://www.entityframeworktutorial.net/code-first/configure-one-to-many-relationship-in-code-first.aspx)
 - [Web API powerful Custom Model Validation with FluentValidation](https://chsakell.com/2015/01/17/web-api-powerful-custom-model-validation-with-fluentvalidation/)
 
+## Food for thought
+- [Is the Repository pattern useful with Entity Framework?](http://www.thereformedprogrammer.net/is-the-repository-pattern-useful-with-entity-framework/) I've had also this argument in my mind for long time. I decided not to use repositories on my .net Core reimplementation as the dbcontext can use a memory provider and the SQL Lite memory provider for testing
+- [Managing DbContext the right way with Entity Framework 6: an in-depth guide](http://mehdi.me/ambient-dbcontext-in-ef6/) Must Read!
 ## Notes
 - Calling a post method using HttpClient, a strange 404 occured. See my remarks at Aurora.SMS.FakeProvider.Controllers.TestPost
 - [Generic Repository and Unit of Work Pattern, Entity Framework, Unit Testing, Autofac IoC Container and ASP.NET MVC](http://techbrij.com/unit-testing-asp-net-mvc-controller-service)
+
+
+My LinkedIn profile:https://www.linkedin.com/in/sotiris-soto-hatzis-4a578a100

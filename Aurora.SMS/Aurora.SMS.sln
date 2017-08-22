@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.EFModel", "Aurora.SMS.EFModel\Aurora.SMS.EFModel.csproj", "{ACC24B1F-B706-4B15-95CA-8639E3956E53}"
 EndProject
@@ -28,6 +28,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.Common", "Aurora.SMS.Common\Aurora.SMS.Common.csproj", "{D0F7B5F4-923A-4D94-8522-4C2AAD1A25AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.Web", "Aurora.SMS.Web\Aurora.SMS.Web.csproj", "{0B266BC0-5853-4578-A79C-F12BDA967A7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.Modeling", "Aurora.SMS.Modeling\Aurora.SMS.Modeling.csproj", "{ACC8CE59-5D5E-4D3E-B586-5537A64FEDC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.SMS.WebTests", "Aurora.SMS.WebTests\Aurora.SMS.WebTests.csproj", "{620B94C0-CEA3-4261-9668-337850EC41EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +83,14 @@ Global
 		{0B266BC0-5853-4578-A79C-F12BDA967A7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B266BC0-5853-4578-A79C-F12BDA967A7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B266BC0-5853-4578-A79C-F12BDA967A7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACC8CE59-5D5E-4D3E-B586-5537A64FEDC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACC8CE59-5D5E-4D3E-B586-5537A64FEDC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACC8CE59-5D5E-4D3E-B586-5537A64FEDC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACC8CE59-5D5E-4D3E-B586-5537A64FEDC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{620B94C0-CEA3-4261-9668-337850EC41EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{620B94C0-CEA3-4261-9668-337850EC41EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{620B94C0-CEA3-4261-9668-337850EC41EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{620B94C0-CEA3-4261-9668-337850EC41EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

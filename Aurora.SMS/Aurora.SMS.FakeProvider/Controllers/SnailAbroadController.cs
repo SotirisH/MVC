@@ -23,6 +23,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
         /// <summary>
         /// The credit decrease is created as public function in order to be able to Moq it
         /// </summary>
+        [NonAction]
         public virtual void DecreaseCredit()
         {
             // Remove one credit from the application variable
@@ -30,7 +31,7 @@ namespace Aurora.SMS.FakeProvider.Controllers
             System.Web.HttpContext.Current.Application["Credits"] = (int)(System.Web.HttpContext.Current.Application["Credits"]) - 1;
             System.Web.HttpContext.Current.Application.UnLock();
         }
-
+        [NonAction]
         public virtual void ApplyDelay()
         {
            Thread.Sleep(2000);
